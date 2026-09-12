@@ -1,35 +1,41 @@
-# 恋場所 〜恋の決まり手〜 Prologue v7
-## Life Simulation Vertical Slice
+# 恋場所 〜恋の決まり手〜 Prologue v8
+## Action & Intervention System
 
-「剛ノ山と話すだけ」から、
-**見る → 知る → 話す → 影響する → 結果を見る**
-へゲームループを拡張したDay1〜3版です。
+v7の「MAP＋自由AI会話」に、会話以外のゲームプレイを本格追加した版です。
 
-### 実装済み
-- ホーム画面
-- 1日2行動
-- MAP
-- 雷神部屋 / 国技館 / コンビニ / SNS / 記者エリア
-- 行動による取りこぼし
-- 気づき（Knowledge）獲得
-- KnowledgeをAI会話へ送信
-- 3日分の取組演出
-- AI自由会話
-- スマホのトーク
-- SNSフィード
-- 思い出アルバム
-- 恋愛番付
-- 好意 / 信頼 / 尊敬 / 警戒 / 自尊心 / 闘志 / 依存 の内部状態
-- Day3のクリフハンガー
-- 主人公導入オープニング
-- 2回目以降のオープニングスキップ
-- 透過WebP表情差分を継続使用
-- localStorageセーブ
-- API失敗時のDEMO AIフォールバック
+### 新規実装
+- 観察ターン：「何を見るか」を1つ選択
+- 介入ターン：「どう行動するか」を選択
+- 観察内容による行動ロック
+- Narrative Flags
+- Action Memory（何をしたかの記憶）
+- 秘密の共有範囲
+- アイテム
+- 広報仕事ターン
+- 取組前介入
+- 親方信頼 / 新田記者信頼
+- fanSupport / mediaPressure / rumorLevel
+- Day2 怪我ルートの複数分岐
+- Day3 「追う / 親方 / 記者対応 / 待つ」の中分岐
+- 待つルート専用思い出
+- 猫写真ルート
+- 過去の行動をAI会話へ送信
 
-### 重要
-server.js のAIスキーマも更新しています。
-GitHubへ全上書きしてPushしてください。
-RenderがAuto Deployならserver.jsも自動更新されます。
+### ゲームループ
+どこへ行く
+→ 何を見る
+→ どう動く
+→ 広報仕事
+→ 取組前行動
+→ 試合
+→ 自由AI会話
+→ スマホ
 
-APIキーは引き続きGitHubには置かず、Render Environment Variablesだけに保存してください。
+### GitHub反映
+ZIPを展開して `koibasho` リポジトリへ全上書きし、
+GitHub Desktopで Commit → Push origin してください。
+
+### Render
+server.js も更新しています。
+Auto Deployが有効ならPush後に自動反映されます。
+APIキーは引き続きRender Environment Variablesだけに保存してください。

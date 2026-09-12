@@ -66,12 +66,18 @@ app.get("/health", (req,res) => res.json({ ok:true, ai: Boolean(client && model)
 app.post("/api/dialogue", async (req,res) => {
   if (!client || !model) return res.status(503).json({ error:"OPENAI_API_KEY and OPENAI_MODEL are required" });
 
-  const { day, turn, player_text, state, memories, recent_history, knowledge, location, channel, scene } = req.body || {};
+  const { day, turn, player_text, state, memories, recent_history, knowledge, location, channel, scene, playerActions, flags, secrets, items, npcRelationships, worldState } = req.body || {};
   if (!player_text || typeof player_text !== "string") return res.status(400).json({ error:"player_text is required" });
 
   const context = {
     day, turn, scene, location, channel, state,
-    knowledge: Array.isArray(knowledge) ? knowledge.slice(-12) : [],
+    knowledge: Array.isArray(knowledge) ? knowledge.slice(-14) : [],
+    playerActions: Array.isArray(playerActions) ? playerActions.slice(-10) : [],
+    flags: Array.isArray(flags) ? flags.slice(-30) : [],
+    secrets: secrets || {},
+    items: Array.isArray(items) ? items.slice(-10) : [],
+    npcRelationships: npcRelationships || {},
+    worldState: worldState || {},
     memories: Array.isArray(memories) ? memories.slice(-8) : [],
     recent_history: Array.isArray(recent_history) ? recent_history.slice(-8) : []
   };
@@ -88,6 +94,10 @@ knowledge は「プレイヤーが実際に見聞きした情報」。プレイ�
 プレイヤーが知らない情報を、剛ノ山側から都合よく説明しすぎない。
 channel が phone の場合は短いメッセージ口調にする。
 dependency_delta は、剛ノ山がプレイヤーへ判断を委ねる傾向の変化。過度な依存を安易に上げない。
+playerActions は主人公が実際に取った行動履歴。剛ノ山がその行動を知り得る場合のみ自然に触れてよい。
+flags はストーリー上の確定事項。secrets は秘密を誰が知っているかを表す。剛ノ山が知らない秘密を知っているように振る舞わない。
+items は主人公が所持または渡した物。npcRelationships と worldState は親方・記者・SNS世論などの世界状態。
+会話では、言葉だけでなく過去の行動に対する感情も反映する。
 action_intent は今後の行動意図を短い英字または日本語で返す。topic は会話テーマを短く返す。` }
     ]},
     { role:"user", content:[
