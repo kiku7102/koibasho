@@ -3,207 +3,389 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#171311">
-<title>恋場所 〜恋の決まり手〜 | Prologue</title>
+<meta name="theme-color" content="#130f0d">
+<title>恋場所 〜恋の決まり手〜 | Prologue v2</title>
 <style>
 :root{
-  --ink:#1f1916;--paper:#fffaf2;--cream:#f0e4d3;--red:#8d2f2f;--gold:#c49a55;
-  --muted:#786c64;--line:#decdb9;--deep:#171311;--glass:rgba(255,250,242,.91);
-  --shadow:0 16px 40px rgba(36,22,14,.22);
+  --ink:#241c18;
+  --paper:#fff9f1;
+  --paper2:#f6eee2;
+  --panel:#fffdf9;
+  --muted:#7c6f67;
+  --line:#dcc8b0;
+  --gold:#c89d58;
+  --gold2:#e2c48f;
+  --crimson:#8f2f33;
+  --forest:#2e4c45;
+  --deep:#130f0d;
+  --shadow:0 18px 46px rgba(31,18,11,.25);
 }
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;background:#1d1815;color:var(--ink)}
+html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;background:#171311;color:var(--ink)}
 button,textarea{font:inherit}
 button{cursor:pointer}
-#app{min-height:100dvh;max-width:620px;margin:auto;background:var(--paper);position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.4)}
-.topbar{position:absolute;inset:0 0 auto 0;z-index:30;padding:10px 12px;display:flex;align-items:flex-start;justify-content:space-between;pointer-events:none}
-.brand{color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.55)}
-.brand b{display:block;font-size:17px;letter-spacing:.03em}.brand span{font-size:10px;opacity:.78}
-.status{pointer-events:auto;background:rgba(20,16,13,.66);color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 9px;font-size:10px;backdrop-filter:blur(8px)}
-.status.live{background:rgba(49,90,61,.82)}.status.mock{background:rgba(115,78,38,.82)}
-.stage{height:58dvh;min-height:400px;position:relative;overflow:hidden;background:#aaa}
-.bg{position:absolute;inset:0;transition:filter .45s,opacity .45s,transform .7s;background-size:cover;background-position:center}
-.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,9,8,.08) 45%,rgba(10,7,5,.5) 100%)}
-.bg.day1{background:
-radial-gradient(circle at 72% 18%,rgba(255,239,190,.46),transparent 23%),
-linear-gradient(90deg,rgba(102,76,52,.32) 0 3%,transparent 3% 22%,rgba(100,75,50,.26) 22% 25%,transparent 25% 77%,rgba(100,75,50,.26) 77% 80%,transparent 80%),
-linear-gradient(#dfc9a5 0 24%,#83664d 24% 27%,#eee4d2 27% 72%,#ad8a65 72% 75%,#69523f 75%)}
-.bg.day2{background:
-radial-gradient(circle at 17% 19%,rgba(255,255,255,.7),transparent 22%),
-repeating-linear-gradient(90deg,rgba(248,246,238,.7) 0 70px,rgba(104,91,73,.12) 70px 74px),
-linear-gradient(#d6d6d0 0 19%,#6c746f 19% 22%,#dfdcd4 22% 77%,#716b62 77%)}
-.bg.day3{background:
-radial-gradient(circle at 80% 18%,rgba(255,210,120,.42),transparent 15%),
-linear-gradient(#263143 0 40%,#5a5660 40% 42%,#c7b79d 42% 76%,#6f5946 76%)}
-.bg.blur{filter:blur(3px) brightness(.72);transform:scale(1.03)}
-.location{position:absolute;left:13px;top:68px;z-index:10;color:#fff;background:rgba(26,21,18,.68);padding:6px 9px;border-radius:999px;font-size:11px;backdrop-filter:blur(6px)}
-.stats{position:absolute;right:13px;top:68px;z-index:10;color:#fff;text-align:right;font-size:10px;text-shadow:0 2px 9px rgba(0,0,0,.65)}
-.stats b{font-size:13px;display:block}
-.char{position:absolute;left:50%;bottom:-17px;transform:translateX(-50%);width:min(92%,465px);height:95%;z-index:5;transition:transform .38s ease,filter .35s ease,opacity .35s}
-.char.close{transform:translateX(-50%) scale(1.055)}
-.char.lookaway{transform:translateX(-52%) scale(1.01)}
-.char svg{width:100%;height:100%;display:block;filter:drop-shadow(0 18px 14px rgba(0,0,0,.28))}
-.char.bump{animation:bump .4s ease}@keyframes bump{0%,100%{transform:translateX(-50%)}45%{transform:translateX(-50%) scale(1.04)}}
-.emotiontag{position:absolute;right:15px;top:110px;z-index:12;background:rgba(255,250,242,.92);border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:6px 9px;font-size:10px;opacity:0;transform:translateY(5px);transition:.25s;box-shadow:0 5px 14px rgba(0,0,0,.14)}
-.emotiontag.show{opacity:1;transform:none}
-.scene-title{position:absolute;left:14px;bottom:16px;z-index:9;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.7)}
-.scene-title .day{font-size:11px;letter-spacing:.22em;opacity:.77}.scene-title h1{margin:4px 0 0;font-size:24px}
-.panel{min-height:42dvh;background:var(--paper);position:relative;z-index:15;border-radius:24px 24px 0 0;margin-top:-19px;padding:18px 13px calc(166px + env(safe-area-inset-bottom))}
-.scenelead{background:#fff;border:1px solid var(--line);border-radius:16px;padding:11px 12px;margin-bottom:10px;font-size:12px;line-height:1.6;color:var(--muted)}
-.log{display:grid;gap:9px}
-.bubble{max-width:90%;padding:11px 13px;border-radius:18px;font-size:15px;line-height:1.65;white-space:pre-wrap;box-shadow:0 4px 15px rgba(42,24,13,.045)}
-.bubble .speaker{font-size:10px;font-weight:900;opacity:.65;margin-bottom:3px}
-.gono{justify-self:start;background:#fff;border:1px solid var(--line);border-bottom-left-radius:5px}
-.you{justify-self:end;background:var(--red);color:#fff;border-bottom-right-radius:5px}
-.narr{max-width:100%;justify-self:stretch;text-align:center;background:#fff5d8;border:1px solid #e9d3a2;color:#655744;font-size:12px}
-.typing{display:flex;gap:5px;padding:5px 0}.typing i{width:6px;height:6px;border-radius:50%;background:#76695f;animation:dot 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}@keyframes dot{0%,60%,100%{opacity:.2;transform:none}30%{opacity:1;transform:translateY(-4px)}}
-.controls{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(620px,100%);z-index:40;background:rgba(255,250,242,.96);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px 10px calc(9px + env(safe-area-inset-bottom))}
-.prompt{font-size:11px;color:var(--muted);margin:0 2px 5px}
-textarea{width:100%;height:67px;border:1px solid #cdbca7;border-radius:15px;background:#fff;padding:10px 11px;resize:none;outline:none;font-size:15px}
-textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(196,154,85,.13)}
-.actions{display:flex;gap:7px;margin-top:7px}
-button{border:0;border-radius:13px;padding:10px 11px;font-weight:850;background:#eadfce;color:var(--ink)}
-.send{flex:1;background:var(--red);color:#fff}.gold{background:#d8b46a}
+#app{max-width:640px;min-height:100dvh;margin:auto;background:var(--paper);position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.45)}
+.topbar{position:absolute;inset:0 0 auto 0;z-index:40;padding:14px 14px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none}
+.logo{
+  color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)
+}
+.logo b{display:block;font-size:18px;letter-spacing:.03em}
+.logo span{display:block;margin-top:2px;font-size:10px;opacity:.78;letter-spacing:.1em}
+.status{pointer-events:auto;border-radius:999px;padding:8px 12px;font-size:10px;font-weight:900;letter-spacing:.08em;color:#fff;background:rgba(92,70,45,.85);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px)}
+.status.live{background:rgba(53,112,78,.92)}
+.stage{position:relative;height:61dvh;min-height:440px;overflow:hidden;background:#b6a896}
+.bg{position:absolute;inset:0;transition:.5s ease;transform:scale(1.02)}
+.bg::before,.bg::after{content:"";position:absolute;inset:0;pointer-events:none}
+.bg::after{background:linear-gradient(to bottom,rgba(255,255,255,.03) 36%,rgba(17,10,6,.16) 70%,rgba(17,10,6,.44) 100%)}
+.bg.day1{
+  background:
+  linear-gradient(90deg, rgba(108,87,63,.20) 0 3%, transparent 3% 23%, rgba(108,87,63,.18) 23% 26%, transparent 26% 76%, rgba(108,87,63,.18) 76% 79%, transparent 79% 100%),
+  linear-gradient(#e0cda8 0 24%, #7d6147 24% 27%, #f0e6d5 27% 74%, #a98763 74% 77%, #5e4838 77% 100%);
+}
+.bg.day1::before{
+  background:
+  radial-gradient(circle at 62% 14%, rgba(255,246,215,.68), transparent 25%),
+  radial-gradient(circle at 50% 45%, rgba(255,239,205,.25), transparent 34%);
+}
+.bg.day2{
+  background:
+  repeating-linear-gradient(90deg, rgba(245,245,241,.72) 0 76px, rgba(108,103,95,.11) 76px 80px),
+  linear-gradient(#d8d9d4 0 17%, #7f857f 17% 20%, #e2ddd3 20% 79%, #6e695f 79% 100%);
+}
+.bg.day2::before{background:radial-gradient(circle at 15% 15%, rgba(255,255,255,.72), transparent 20%)}
+.bg.day3{
+  background:
+  linear-gradient(#293448 0 40%, #665b63 40% 43%, #cbb99d 43% 78%, #6e5644 78% 100%);
+}
+.bg.day3::before{
+  background:
+  radial-gradient(circle at 80% 17%, rgba(255,213,117,.45), transparent 13%),
+  radial-gradient(circle at 55% 50%, rgba(255,246,221,.14), transparent 34%);
+}
+.bg.blur{filter:blur(4px) brightness(.78)}
+.location-pill{position:absolute;left:14px;top:76px;z-index:15;background:rgba(31,24,20,.72);color:#fff;border-radius:999px;padding:8px 12px;font-size:12px;backdrop-filter:blur(8px);box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.corner-stats{position:absolute;right:14px;top:78px;z-index:15;text-align:right;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.65)}
+.corner-stats b{display:block;font-size:31px;line-height:1}
+.corner-stats span{display:block;font-size:12px;opacity:.86}
+.stage-title{position:absolute;left:16px;bottom:21px;z-index:14;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.72)}
+.stage-title .day{font-size:11px;letter-spacing:.22em;opacity:.8}
+.stage-title h1{font-size:33px;line-height:1.03;margin:6px 0 0}
+.expression-chip{position:absolute;right:17px;top:128px;z-index:16;background:rgba(255,253,248,.95);border:1px solid rgba(255,255,255,.5);color:#5a493d;border-radius:999px;padding:6px 10px;font-size:10px;box-shadow:0 6px 18px rgba(0,0,0,.12);opacity:0;transform:translateY(5px);transition:.24s}
+.expression-chip.show{opacity:1;transform:none}
+.char-wrap{position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);width:min(93%,500px);height:94%;z-index:10;transition:.35s ease}
+.char-wrap svg{width:100%;height:100%;display:block;filter:drop-shadow(0 22px 16px rgba(0,0,0,.25))}
+.char-wrap.lookaway{transform:translateX(-52%)}
+.char-wrap.close{transform:translateX(-50%) scale(1.04)}
+.char-wrap.breathe{animation:breathe 3.6s ease-in-out infinite}
+.char-wrap.bump{animation:bump .42s ease}
+@keyframes breathe{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+@keyframes bump{0%,100%{transform:translateX(-50%)}45%{transform:translateX(-50%) scale(1.035)}}
+.nameplate{
+  position:absolute;right:16px;bottom:20px;z-index:16;
+  background:rgba(255,251,244,.92);border:1px solid rgba(255,255,255,.48);backdrop-filter:blur(8px);
+  border-radius:18px;padding:9px 12px;box-shadow:0 10px 26px rgba(0,0,0,.12)
+}
+.nameplate b{display:block;font-size:13px}
+.nameplate span{display:block;margin-top:1px;font-size:10px;color:var(--muted)}
+.spark{position:absolute;inset:0;pointer-events:none;z-index:13;background:
+  radial-gradient(circle at 47% 35%, rgba(255,255,255,.17), transparent 20%),
+  radial-gradient(circle at 56% 43%, rgba(255,255,255,.08), transparent 18%);
+}
+.main-panel{
+  position:relative;z-index:20;margin-top:-24px;background:linear-gradient(#fffdf9,#fbf4e9);border-radius:28px 28px 0 0;
+  min-height:39dvh;padding:18px 14px calc(175px + env(safe-area-inset-bottom));box-shadow:0 -8px 22px rgba(0,0,0,.05)
+}
+.lead{
+  background:linear-gradient(#fff,#fffaf3);border:1px solid var(--line);border-radius:18px;padding:12px 13px;color:var(--muted);
+  font-size:13px;line-height:1.7;box-shadow:0 4px 18px rgba(32,18,10,.04);margin-bottom:11px
+}
+.log{display:grid;gap:10px}
+.bubble{max-width:92%;border-radius:20px;padding:12px 14px;font-size:16px;line-height:1.7;white-space:pre-wrap;box-shadow:0 6px 18px rgba(31,18,11,.05)}
+.bubble .speaker{font-size:10px;font-weight:900;letter-spacing:.06em;opacity:.68;margin-bottom:4px}
+.bubble.gono{justify-self:start;background:linear-gradient(#fff,#fff9f3);border:1px solid var(--line);border-bottom-left-radius:6px}
+.bubble.you{justify-self:end;background:linear-gradient(#9b3438,#8b2f33);color:#fff;border-bottom-right-radius:6px}
+.bubble.narr{justify-self:stretch;max-width:100%;text-align:center;background:#fff6dc;border:1px solid #ead3a5;color:#665744;font-size:13px}
+.typing{display:flex;gap:6px;padding:4px 0}
+.typing i{width:7px;height:7px;border-radius:50%;background:#7a6b60;animation:dot 1s infinite ease-in-out}
+.typing i:nth-child(2){animation-delay:.15s}
+.typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{opacity:.24;transform:none}30%{opacity:1;transform:translateY(-4px)}}
+.controls{
+  position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(640px,100%);z-index:50;
+  background:rgba(255,249,241,.96);border-top:1px solid var(--line);backdrop-filter:blur(14px);padding:9px 10px calc(10px + env(safe-area-inset-bottom))
+}
+.prompt{font-size:12px;color:var(--muted);margin:0 2px 6px}
+textarea{
+  width:100%;height:74px;border:1px solid #ccb9a1;border-radius:17px;background:#fff;padding:11px 12px;
+  resize:none;outline:none;font-size:15px;box-shadow:inset 0 1px 2px rgba(0,0,0,.03)
+}
+textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,157,88,.14)}
+.actions{display:flex;gap:8px;margin-top:8px}
+button{border:0;border-radius:14px;padding:11px 12px;background:#ede1cf;color:var(--ink);font-weight:850}
+button.primary{background:linear-gradient(#9a3438,#8a2f32);color:#fff;flex:1}
+button.gold{background:linear-gradient(#e1bf7b,#cca05b)}
+button.dark{background:#302621;color:#fff}
 button:disabled,textarea:disabled{opacity:.45}
-.next{display:flex;justify-content:flex-end;margin-top:10px}.next button{background:#332821;color:#fff}
-.overlay{position:fixed;inset:0;z-index:80;background:rgba(20,15,12,.8);display:none;align-items:center;justify-content:center;padding:15px}
-.overlay.show{display:flex}.modal{width:min(520px,100%);max-height:84dvh;overflow:auto;background:var(--paper);border-radius:22px;padding:18px;box-shadow:var(--shadow)}
-.memory{background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 10px;margin:7px 0;font-size:12px}
-.transition{position:fixed;inset:0;z-index:90;background:#201815;color:#fff;display:none;align-items:center;justify-content:center;text-align:center}.transition.show{display:flex}
-.transition .n{font-size:46px;font-weight:950}.transition .t{font-size:14px;opacity:.74;margin-top:4px}
-.end{padding:20px 5px;text-align:center}.end h1{font-size:30px}.quote{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin:10px 0;text-align:left}
+.next{display:flex;justify-content:flex-end;margin-top:10px}
+.next button{background:#302621;color:#fff}
+.overlay{position:fixed;inset:0;z-index:80;background:rgba(18,13,10,.82);display:none;align-items:center;justify-content:center;padding:15px}
+.overlay.show{display:flex}
+.modal{width:min(520px,100%);max-height:84dvh;overflow:auto;background:var(--paper);border-radius:24px;padding:18px;box-shadow:var(--shadow)}
+.memory{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;font-size:12px}
+.transition{position:fixed;inset:0;z-index:90;background:#1f1814;color:#fff;display:none;align-items:center;justify-content:center;text-align:center}
+.transition.show{display:flex}
+.transition .n{font-size:48px;font-weight:950}
+.transition .t{font-size:14px;opacity:.75;margin-top:5px}
+.end{text-align:center;padding:22px 8px}
+.end h1{font-size:32px}
+.quote{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin:10px 0;text-align:left}
 .hidden{display:none!important}
-@media(max-height:730px){.stage{height:52dvh;min-height:350px}.char{width:82%}.panel{padding-bottom:155px}}
+@media (max-height:760px){
+  .stage{height:56dvh;min-height:390px}
+  .char-wrap{width:83%}
+  .main-panel{padding-bottom:165px}
+}
 </style>
 </head>
 <body>
 <div id="app">
   <div class="topbar">
-    <div class="brand"><b>恋場所 〜恋の決まり手〜</b><span>Prologue / 剛ノ山編</span></div>
-    <div class="status mock" id="aiStatus">DEMO AI</div>
+    <div class="logo"><b>恋場所 〜恋の決まり手〜</b><span>PROLOGUE / GONOYAMA ROUTE</span></div>
+    <div id="aiStatus" class="status">DEMO AI</div>
   </div>
 
   <section class="stage">
     <div id="bg" class="bg day1"></div>
-    <div class="location" id="location">雷神部屋・玄関</div>
-    <div class="stats"><b id="record">1勝0敗</b><span id="condition">平常</span></div>
-    <div id="emotionTag" class="emotiontag">……</div>
-    <div id="char" class="char"><div id="charArt" style="width:100%;height:100%"></div></div>
-    <div class="scene-title"><div class="day" id="dayLabel">DAY 1</div><h1 id="sceneTitle">初対面</h1></div>
+    <div class="spark"></div>
+    <div id="location" class="location-pill">雷神部屋・玄関</div>
+    <div class="corner-stats"><b id="record">1勝0敗</b><span id="condition">平常</span></div>
+    <div id="expressionChip" class="expression-chip">……</div>
+    <div id="charWrap" class="char-wrap breathe"><div id="charArt" style="width:100%;height:100%"></div></div>
+    <div class="nameplate"><b>剛ノ山 剛志</b><span>27歳 / 十両上位 / 188cm / 168kg</span></div>
+    <div class="stage-title"><div class="day" id="dayLabel">DAY 1</div><h1 id="sceneTitle">初対面</h1></div>
   </section>
 
-  <main class="panel">
-    <div class="scenelead" id="lead"></div>
-    <div class="log" id="log"></div>
+  <main class="main-panel">
+    <div id="lead" class="lead"></div>
+    <div id="log" class="log"></div>
   </main>
 
-  <div class="controls" id="controls">
-    <div class="prompt" id="prompt">あなたなら、何と言う？</div>
+  <div id="controls" class="controls">
+    <div id="prompt" class="prompt">あなたなら、何と言う？</div>
     <textarea id="input" placeholder="自分の言葉で話す"></textarea>
     <div class="actions">
       <button id="memoryBtn">記憶</button>
-      <button class="gold" id="restartBtn">最初から</button>
-      <button class="send" id="sendBtn">話す</button>
+      <button id="restartBtn" class="gold">最初から</button>
+      <button id="sendBtn" class="primary">話す</button>
     </div>
   </div>
 </div>
 
-<div class="overlay" id="overlay"><div class="modal" id="modal"></div></div>
-<div class="transition" id="transition"><div><div class="n" id="transN"></div><div class="t" id="transT"></div></div></div>
+<div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
+<div id="transition" class="transition"><div><div id="transN" class="n"></div><div id="transT" class="t"></div></div></div>
 
 <script src="./config.js"></script>
 <script>
 const API_BASE=(window.KOIBASHO_API_BASE||"").replace(/\/$/,"");
-const STATE_KEY="koibasho_prologue_v1";
+const KEY="koibasho_prologue_v2";
 const initial={
  day:1,turn:0,wins:1,losses:0,injury:0,fatigue:8,
  affection:6,trust:5,respect:7,guard:16,selfEsteem:58,fightingSpirit:61,
  memories:[],history:[],lastReply:"",mode:"mock"
 };
-let S=JSON.parse(localStorage.getItem(STATE_KEY)||"null")||structuredClone(initial);
+let S=JSON.parse(localStorage.getItem(KEY)||"null")||structuredClone(initial);
 
 const SCENES={
- 1:{title:"初対面",place:"雷神部屋・玄関",bg:"day1",expr:"neutral",outfit:"yukata",lead:"本場所初日。新任広報として雷神部屋に入ったあなたの前で、大きな男が足を止めた。",opening:"……新しい広報？　俺、取材とか苦手だから。",maxTurns:4,
+ 1:{title:"初対面",place:"雷神部屋・玄関",bg:"day1",expr:"neutral",outfit:"yukata",lead:"本場所初日。新任広報として雷神部屋に入ったあなたの前で、大きな男が足を止めた。予想していたよりもずっと無口そうで、少しだけ近寄りがたい。",opening:"……新しい広報？　俺、取材とか苦手だから。",maxTurns:4,
  prompts:["初対面です。自由に話しかけてください。","剛ノ山はまだ帰らず、少しこちらを見ています。","少しだけ空気が柔らかくなりました。","帰り際です。最後に一言伝えられます。"],
  ending:"……明日も来るんだろ？"},
- 2:{title:"小さな違和感",place:"国技館・支度部屋前",bg:"day2",expr:"neutral",outfit:"sumo",lead:"二日目。剛ノ山は連勝した。しかし支度部屋から出た瞬間だけ、左足に体重をかけるのを避けた。",opening:"……何見てる。別に何でもない。",maxTurns:5,
+ 2:{title:"小さな違和感",place:"国技館・支度部屋前",bg:"day2",expr:"neutral",outfit:"sumo",lead:"二日目。剛ノ山は連勝した。しかし支度部屋から出た瞬間だけ、左足に体重をかけるのを避けた。いつもより返事が少し短い。",opening:"……何見てる。別に何でもない。",maxTurns:5,
  prompts:["足のことに触れても、触れなくても構いません。","剛ノ山は平気なふりをしています。","話題を変えても構いません。","会話の途中、剛ノ山がコンビニ袋を持ち直しました。","プリンが二つあります。"],
  ending:"……いらないなら、俺が二個食う。"},
- 3:{title:"初黒星",place:"雷神部屋・夜",bg:"day3",expr:"tired",outfit:"casual",lead:"三日目。初黒星。取材を終えた剛ノ山は、薄暗い部屋でスポーツドリンクを持ったまま座っている。",opening:"負けたやつに何言えばいいか、困るだろ。",maxTurns:5,
+ 3:{title:"初黒星",place:"雷神部屋・夜",bg:"day3",expr:"tired",outfit:"casual",lead:"三日目。初黒星。取材を終えた剛ノ山は、薄暗い部屋でスポーツドリンクを持ったまま座っている。普段より静かで、どこか疲れて見えた。",opening:"負けたやつに何言えばいいか、困るだろ。",maxTurns:5,
  prompts:["今の剛ノ山に何と言いますか？","剛ノ山は会話を終わらせません。","普段より少し本音が見えています。","剛ノ山はあなたの返答を待っています。","「勝てない力士って、価値ないと思うか？」"],
  ending:"……覚えとく。お前が今日言ったこと。"}
 };
 
-function save(){localStorage.setItem(STATE_KEY,JSON.stringify(S))}
+function save(){localStorage.setItem(KEY,JSON.stringify(S))}
 function esc(s){return String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]))}
 function clamp(n){return Math.max(0,Math.min(100,n))}
 function condition(){if(S.injury>=25)return"左足に痛み";if(S.fatigue>=30)return"疲労あり";return"平常"}
 
-const bg=document.getElementById("bg"),char=document.getElementById("char"),charArt=document.getElementById("charArt"),
-log=document.getElementById("log"),lead=document.getElementById("lead"),input=document.getElementById("input"),sendBtn=document.getElementById("sendBtn"),
-promptEl=document.getElementById("prompt"),emotionTag=document.getElementById("emotionTag"),controls=document.getElementById("controls");
+const bg=document.getElementById("bg"), charWrap=document.getElementById("charWrap"), charArt=document.getElementById("charArt"),
+log=document.getElementById("log"), lead=document.getElementById("lead"), input=document.getElementById("input"),
+sendBtn=document.getElementById("sendBtn"), promptEl=document.getElementById("prompt"),
+expressionChip=document.getElementById("expressionChip");
 
 function face(expr){
  const m={
- neutral:{b1:"M132 120 Q151 111 169 118",b2:"M211 118 Q231 111 248 120",e1:"M143 139 Q156 145 169 138",e2:"M216 138 Q229 145 242 139",mouth:"M177 181 Q192 183 207 181",blush:0},
- soft:{b1:"M132 120 Q151 114 169 120",b2:"M211 120 Q231 114 248 120",e1:"M143 140 Q156 147 169 140",e2:"M216 140 Q229 147 242 140",mouth:"M176 179 Q192 191 208 179",blush:0},
- blush:{b1:"M132 121 Q151 115 169 121",b2:"M211 121 Q231 115 248 121",e1:"M143 141 Q156 146 169 141",e2:"M216 141 Q229 146 242 141",mouth:"M181 183 Q192 189 203 183",blush:1},
- annoyed:{b1:"M132 125 L170 115",b2:"M211 115 L249 125",e1:"M143 142 Q156 146 169 140",e2:"M216 140 Q229 146 242 142",mouth:"M178 184 Q192 178 206 184",blush:0},
- tired:{b1:"M132 122 Q151 118 169 122",b2:"M211 122 Q231 118 248 122",e1:"M143 144 Q156 148 169 144",e2:"M216 144 Q229 148 242 144",mouth:"M179 184 Q192 182 205 184",blush:0},
- pain:{b1:"M132 127 L170 112",b2:"M211 112 L249 127",e1:"M143 144 Q156 151 169 142",e2:"M216 142 Q229 151 242 144",mouth:"M176 188 Q192 175 208 188",blush:0},
- serious:{b1:"M132 120 L170 117",b2:"M211 117 L249 120",e1:"M143 139 L169 139",e2:"M216 139 L242 139",mouth:"M178 183 L206 183",blush:0},
- smile:{b1:"M132 119 Q151 114 169 119",b2:"M211 119 Q231 114 248 119",e1:"M143 138 Q156 151 169 138",e2:"M216 138 Q229 151 242 138",mouth:"M174 177 Q192 196 211 177",blush:0}
- };return m[expr]||m.neutral;
+  neutral:{b1:"M140 129 Q162 118 182 126",b2:"M218 126 Q239 118 260 129",e1:"M150 150 Q166 158 183 149",e2:"M218 149 Q234 158 251 150",mouth:"M182 198 Q200 201 218 198",blush:0,eye:"normal"},
+  soft:{b1:"M140 129 Q162 121 182 129",b2:"M218 129 Q239 121 260 129",e1:"M150 151 Q166 161 183 151",e2:"M218 151 Q234 161 251 151",mouth:"M179 196 Q199 211 220 196",blush:0,eye:"normal"},
+  blush:{b1:"M140 130 Q162 123 182 130",b2:"M218 130 Q239 123 260 130",e1:"M150 153 Q166 160 183 153",e2:"M218 153 Q234 160 251 153",mouth:"M184 200 Q200 207 216 200",blush:1,eye:"normal"},
+  annoyed:{b1:"M140 136 L184 124",b2:"M218 124 L262 136",e1:"M150 154 Q166 157 183 151",e2:"M218 151 Q234 157 251 154",mouth:"M182 201 Q199 194 218 201",blush:0,eye:"normal"},
+  tired:{b1:"M140 132 Q162 128 182 132",b2:"M218 132 Q239 128 260 132",e1:"M150 156 Q166 160 183 156",e2:"M218 156 Q234 160 251 156",mouth:"M184 201 Q200 199 216 201",blush:0,eye:"sleepy"},
+  pain:{b1:"M140 138 L184 122",b2:"M218 122 L262 138",e1:"M150 156 Q166 166 183 154",e2:"M218 154 Q234 166 251 156",mouth:"M181 205 Q200 189 219 205",blush:0,eye:"pain"},
+  serious:{b1:"M140 130 L184 127",b2:"M218 127 L262 130",e1:"M150 150 L183 150",e2:"M218 150 L251 150",mouth:"M183 199 L217 199",blush:0,eye:"line"},
+  smile:{b1:"M140 128 Q162 120 182 128",b2:"M218 128 Q239 120 260 128",e1:"M150 149 Q166 163 183 149",e2:"M218 149 Q234 163 251 149",mouth:"M176 192 Q200 220 224 192",blush:0,eye:"normal"}
+ }; return m[expr]||m.neutral;
 }
-function characterSVG(expr="neutral",outfit="yukata"){
+
+function kimonoPattern(outfit){
+ if(outfit==="yukata"){
+   return `
+    <g opacity=".16" fill="#d8c18d">
+      <circle cx="154" cy="276" r="7"/><circle cx="224" cy="292" r="6"/><circle cx="201" cy="319" r="7"/><circle cx="131" cy="321" r="6"/>
+    </g>`;
+ }
+ return "";
+}
+
+function characterSVG(expr="neutral", outfit="yukata"){
  const f=face(expr);
- const outfitColor=outfit==="sumo"?"#8c2831":outfit==="casual"?"#3b4344":"#354a43";
- const chest=outfit==="sumo"
- ? `<path d="M90 210 Q118 174 154 169 Q192 159 229 169 Q267 176 292 211 L304 334 Q267 357 190 359 Q112 357 75 333Z" fill="#d19a74"/><path d="M88 300 Q130 282 190 285 Q250 282 293 301 L284 348 Q242 365 190 366 Q138 365 96 348Z" fill="#862934"/>`
- : `<path d="M90 210 Q118 174 154 169 Q192 159 229 169 Q267 176 292 211 L304 334 Q267 357 190 359 Q112 357 75 333Z" fill="${outfitColor}"/>
-    ${outfit==="casual"?`<g transform="translate(174 267)" opacity=".8"><circle cx="15" cy="13" r="14" fill="#e5d1aa"/><path d="M5 4 L4 -7 L11 -2 M25 4 L27 -7 L20 -2" fill="#e5d1aa"/><circle cx="11" cy="11" r="1.4"/><circle cx="19" cy="11" r="1.4"/><path d="M12 17 Q15 19 18 17" fill="none" stroke="#65523f" stroke-width="1.4"/></g>`:""}`;
- const blush=f.blush?`<ellipse cx="145" cy="162" rx="16" ry="7" fill="#e98c84" opacity=".25"/><ellipse cx="240" cy="162" rx="16" ry="7" fill="#e98c84" opacity=".25"/>`:"";
- return `<svg viewBox="0 0 380 440" aria-label="剛ノ山">
- <path d="M116 330 Q96 391 101 437 H163 L174 334Z" fill="#483b32"/><path d="M206 334 L217 437 H279 Q286 391 264 330Z" fill="#483b32"/>
- ${chest}
- <path d="M91 218 Q54 241 48 301 Q52 325 74 322 Q87 284 118 260Z" fill="#c88f69"/>
- <path d="M290 218 Q327 241 333 301 Q329 325 307 322 Q293 284 263 260Z" fill="#c88f69"/>
- <path d="M155 176 L158 204 Q190 220 223 204 L225 175Z" fill="#c88f69"/>
- <ellipse cx="113" cy="140" rx="17" ry="24" fill="#c88f69"/><ellipse cx="268" cy="140" rx="17" ry="24" fill="#c88f69"/>
- <ellipse cx="190" cy="136" rx="79" ry="75" fill="#d59a74"/>
- <ellipse cx="190" cy="57" rx="39" ry="22" fill="#2e2925"/><ellipse cx="190" cy="29" rx="25" ry="17" fill="#2e2925"/>
- <path d="M119 120 Q124 65 190 60 Q257 65 263 119 Q238 91 190 92 Q143 91 119 120Z" fill="#2e2925"/>
- <path d="${f.b1}" fill="none" stroke="#3b302a" stroke-width="7" stroke-linecap="round"/><path d="${f.b2}" fill="none" stroke="#3b302a" stroke-width="7" stroke-linecap="round"/>
- <path d="${f.e1}" fill="none" stroke="#2a2521" stroke-width="5" stroke-linecap="round"/><path d="${f.e2}" fill="none" stroke="#2a2521" stroke-width="5" stroke-linecap="round"/>
- <path d="M189 143 Q181 161 192 165" fill="none" stroke="#a86e54" stroke-width="3" stroke-linecap="round"/>
- <path d="${f.mouth}" fill="none" stroke="#6f4137" stroke-width="4" stroke-linecap="round"/>${blush}
- <g opacity=".16" fill="#47362d">${Array.from({length:16},(_,i)=>`<circle cx="${154+(i%8)*10}" cy="${194+Math.floor(i/8)*9}" r="1.3"/>`).join("")}</g>
- </svg>`;
+ const skin="#cf936b";
+ const shadowSkin="#b87957";
+ const dark="#302724";
+ const hair="#201b19";
+ const cloth = outfit==="sumo" ? "#8e2e31" : outfit==="casual" ? "#334647" : "#2f4b44";
+ const accent = outfit==="sumo" ? "#5b171d" : outfit==="casual" ? "#49615f" : "#47665e";
+ const isCasual = outfit==="casual";
+ const isSumo = outfit==="sumo";
+ const blush = f.blush ? `<ellipse cx="151" cy="173" rx="17" ry="8" fill="#e98b83" opacity=".24"/><ellipse cx="249" cy="173" rx="17" ry="8" fill="#e98b83" opacity=".24"/>` : "";
+ const eyeFill = f.eye==="line" ? "" : `<circle cx="170" cy="151" r="2.4" fill="#2b2421"/><circle cx="232" cy="151" r="2.4" fill="#2b2421"/>`;
+ const casualCat = isCasual ? `<g transform="translate(190 305)" opacity=".82">
+   <circle cx="0" cy="0" r="16" fill="#ecd7b2"/>
+   <path d="M-11 -8 L-12 -18 L-4 -11 M11 -8 L12 -18 L4 -11" fill="#ecd7b2"/>
+   <circle cx="-5" cy="-1.5" r="1.5" fill="#65513f"/><circle cx="5" cy="-1.5" r="1.5" fill="#65513f"/>
+   <path d="M-4 6 Q0 9 4 6" fill="none" stroke="#65513f" stroke-width="1.4" stroke-linecap="round"/>
+ </g>` : "";
+ return `
+ <svg viewBox="0 0 420 500" aria-label="剛ノ山正式立ち絵風プロトタイプ">
+   <defs>
+     <linearGradient id="robe" x1="0" y1="0" x2="1" y2="1">
+       <stop offset="0" stop-color="${cloth}"/><stop offset="1" stop-color="${accent}"/>
+     </linearGradient>
+     <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+       <stop offset="0" stop-color="#d69a73"/><stop offset="1" stop-color="${skin}"/>
+     </linearGradient>
+     <radialGradient id="faceGlow" cx=".5" cy=".35" r=".7">
+       <stop offset="0" stop-color="rgba(255,255,255,.32)"/><stop offset=".7" stop-color="rgba(255,255,255,0)"/>
+     </radialGradient>
+   </defs>
+
+   <!-- shadow -->
+   <ellipse cx="210" cy="462" rx="118" ry="17" fill="rgba(0,0,0,.18)"/>
+
+   <!-- legs -->
+   <path d="M149 368 Q132 430 135 490 H187 L195 371Z" fill="#463930"/>
+   <path d="M225 371 L233 490 H285 Q288 430 271 368Z" fill="#463930"/>
+
+   <!-- torso -->
+   ${isSumo ? `
+   <path d="M103 232 Q131 190 173 181 Q210 171 248 181 Q291 190 317 232 L333 370 Q297 401 210 404 Q123 401 87 369Z" fill="url(#skin)"/>
+   <path d="M101 329 Q151 309 210 311 Q269 309 318 329 L309 381 Q260 406 210 409 Q160 406 111 381Z" fill="${cloth}"/>
+   <path d="M180 190 Q211 209 240 190 L241 236 Q213 247 179 236Z" fill="${shadowSkin}" opacity=".36"/>
+   ` : `
+   <path d="M103 233 Q131 189 173 181 Q210 171 248 181 Q291 190 317 233 L333 370 Q297 401 210 404 Q123 401 87 369Z" fill="url(#robe)"/>
+   <path d="M179 181 Q180 224 170 261 Q211 273 250 261 Q240 224 241 181" fill="rgba(255,255,255,.06)"/>
+   <path d="M176 182 L197 226 Q210 236 223 226 L244 182" fill="#e7ddcf"/>
+   <path d="M194 226 L172 329 Q211 346 250 329 L226 226" fill="#d0beaa"/>
+   ${kimonoPattern(outfit)}
+   ${casualCat}
+   `}
+
+   <!-- arms -->
+   <path d="M103 246 Q55 267 47 333 Q49 359 72 358 Q83 315 119 286Z" fill="url(#skin)"/>
+   <path d="M316 246 Q364 267 372 333 Q370 359 347 358 Q336 315 300 286Z" fill="url(#skin)"/>
+   <path d="M68 355 Q66 369 72 382 Q79 393 96 393 Q111 393 114 378 Q117 360 110 348Z" fill="url(#skin)"/>
+   <path d="M352 355 Q354 369 348 382 Q341 393 324 393 Q309 393 306 378 Q303 360 310 348Z" fill="url(#skin)"/>
+
+   <!-- neck -->
+   <path d="M181 185 L184 219 Q211 235 239 219 L242 185Z" fill="url(#skin)"/>
+
+   <!-- ears -->
+   <ellipse cx="128" cy="145" rx="18" ry="25" fill="url(#skin)"/>
+   <ellipse cx="292" cy="145" rx="18" ry="25" fill="url(#skin)"/>
+
+   <!-- face -->
+   <ellipse cx="210" cy="143" rx="85" ry="81" fill="url(#skin)"/>
+   <ellipse cx="210" cy="143" rx="85" ry="81" fill="url(#faceGlow)" opacity=".45"/>
+
+   <!-- hair -->
+   <ellipse cx="210" cy="56" rx="44" ry="24" fill="${hair}"/>
+   <ellipse cx="210" cy="25" rx="28" ry="18" fill="${hair}"/>
+   <path d="M134 124 Q141 68 210 63 Q279 68 286 124 Q262 92 210 93 Q158 92 134 124Z" fill="${hair}"/>
+   <path d="M139 123 Q145 95 210 93 Q275 95 281 123" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="3"/>
+
+   <!-- brows -->
+   <path d="${f.b1}" fill="none" stroke="#3b312c" stroke-width="8" stroke-linecap="round"/>
+   <path d="${f.b2}" fill="none" stroke="#3b312c" stroke-width="8" stroke-linecap="round"/>
+
+   <!-- eyes -->
+   <path d="${f.e1}" fill="none" stroke="#2b2521" stroke-width="5.5" stroke-linecap="round"/>
+   <path d="${f.e2}" fill="none" stroke="#2b2521" stroke-width="5.5" stroke-linecap="round"/>
+   ${eyeFill}
+
+   <!-- nose -->
+   <path d="M210 150 Q202 172 211 176" fill="none" stroke="#a56e54" stroke-width="3.2" stroke-linecap="round"/>
+   <path d="M202 182 Q210 186 218 182" fill="none" stroke="#b97d5b" stroke-width="2" opacity=".55"/>
+
+   <!-- mouth -->
+   <path d="${f.mouth}" fill="none" stroke="#74453a" stroke-width="4.2" stroke-linecap="round"/>
+
+   ${blush}
+
+   <!-- face shading -->
+   <path d="M144 165 Q156 224 210 223 Q262 222 278 165" fill="rgba(182,112,81,.08)"/>
+
+   <!-- stubble -->
+   <g opacity=".18" fill="#564339">
+     ${''.join([f'<circle cx="{165+(i%9)*10}" cy="{206+(i//9)*9}" r="1.4"/>' for i in range(18)])}
+   </g>
+
+   <!-- highlights -->
+   <path d="M144 115 Q158 90 182 78" fill="none" stroke="rgba(255,255,255,.13)" stroke-width="4" stroke-linecap="round"/>
+ </svg>
+ `;
 }
-function setVisual(expr="neutral",gesture="still"){
- const sc=SCENES[S.day];charArt.innerHTML=characterSVG(expr,sc.outfit);
- char.className="char";
- if(["look_away","rub_neck"].includes(gesture))char.classList.add("lookaway");
- if(["step_closer","small_smile"].includes(gesture))char.classList.add("close");
- if(gesture==="flinch"){char.classList.add("bump");setTimeout(()=>char.classList.remove("bump"),500)}
+
+function showExpression(text){
+ if(!text) return;
+ expressionChip.textContent=text;
+ expressionChip.classList.add("show");
+ setTimeout(()=>expressionChip.classList.remove("show"),1200);
 }
-function tag(text){if(!text)return;emotionTag.textContent=text;emotionTag.classList.add("show");setTimeout(()=>emotionTag.classList.remove("show"),1100)}
-function bubble(type,text){
- const d=document.createElement("div");d.className=`bubble ${type}`;
- if(type==="gono")d.innerHTML=`<div class="speaker">剛ノ山</div>${esc(text)}`;
- else if(type==="you")d.innerHTML=`<div class="speaker">あなた</div>${esc(text)}`;
+function setVisual(expr="neutral", gesture="still"){
+ const sc=SCENES[S.day];
+ charArt.innerHTML=characterSVG(expr, sc.outfit);
+ charWrap.className="char-wrap breathe";
+ if(["look_away","rub_neck"].includes(gesture)) charWrap.classList.add("lookaway");
+ if(["step_closer","small_smile"].includes(gesture)) charWrap.classList.add("close");
+ if(gesture==="flinch"){charWrap.classList.add("bump");setTimeout(()=>charWrap.classList.remove("bump"),460);}
+}
+function bubble(type, text){
+ const d=document.createElement("div");
+ d.className=`bubble ${type}`;
+ if(type==="gono") d.innerHTML=`<div class="speaker">剛ノ山</div>${esc(text)}`;
+ else if(type==="you") d.innerHTML=`<div class="speaker">あなた</div>${esc(text)}`;
  else d.textContent=text;
- log.appendChild(d);d.scrollIntoView({behavior:"smooth",block:"nearest"});
+ log.appendChild(d);
+ d.scrollIntoView({behavior:"smooth", block:"nearest"});
 }
 function typing(){
- const d=document.createElement("div");d.className="bubble gono";d.id="typing";d.innerHTML=`<div class="speaker">剛ノ山</div><div class="typing"><i></i><i></i><i></i></div>`;log.appendChild(d);d.scrollIntoView({behavior:"smooth",block:"nearest"})
+ const d=document.createElement("div");
+ d.className="bubble gono";
+ d.id="typing";
+ d.innerHTML=`<div class="speaker">剛ノ山</div><div class="typing"><i></i><i></i><i></i></div>`;
+ log.appendChild(d);
+ d.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 function applyAI(r){
  ["affection","trust","respect","guard","selfEsteem","fightingSpirit"].forEach(k=>{
-   const key=k+"_delta";if(typeof r[key]==="number")S[k]=clamp(S[k]+r[key]);
+   const dk=k+"_delta";
+   if(typeof r[dk]==="number") S[k]=clamp(S[k]+r[dk]);
  });
- if(typeof r.injury_delta==="number")S.injury=clamp(S.injury+r.injury_delta);
- if(typeof r.fatigue_delta==="number")S.fatigue=clamp(S.fatigue+r.fatigue_delta);
+ if(typeof r.injury_delta==="number") S.injury=clamp(S.injury+r.injury_delta);
+ if(typeof r.fatigue_delta==="number") S.fatigue=clamp(S.fatigue+r.fatigue_delta);
  if((r.memory_importance||0)>=3 && r.memory_summary){
    S.memories.push({day:S.day,text:r.memory_summary,importance:r.memory_importance,raw:S.history.at(-1)?.player||""});
    S.memories=S.memories.slice(-12);
@@ -211,101 +393,216 @@ function applyAI(r){
 }
 async function askAI(playerText){
  const payload={
-   day:S.day,turn:S.turn,scene:SCENES[S.day].title,player_text:playerText,
-   state:{affection:S.affection,trust:S.trust,respect:S.respect,guard:S.guard,self_esteem:S.selfEsteem,fighting_spirit:S.fightingSpirit,injury:S.injury,fatigue:S.fatigue},
+   day:S.day, turn:S.turn, scene:SCENES[S.day].title, player_text:playerText,
+   state:{
+     affection:S.affection, trust:S.trust, respect:S.respect, guard:S.guard,
+     self_esteem:S.selfEsteem, fighting_spirit:S.fightingSpirit, injury:S.injury, fatigue:S.fatigue
+   },
    memories:S.memories.slice(-8),
    recent_history:S.history.slice(-8)
  };
  if(API_BASE){
    try{
-     const res=await fetch(`${API_BASE}/api/dialogue`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
-     if(!res.ok)throw new Error(await res.text());
-     const data=await res.json();S.mode="live";document.getElementById("aiStatus").textContent="AI LIVE";document.getElementById("aiStatus").className="status live";return data;
-   }catch(e){console.warn("AI backend unavailable; fallback to demo",e)}
+     const res=await fetch(`${API_BASE}/api/dialogue`,{
+       method:"POST",
+       headers:{"Content-Type":"application/json"},
+       body:JSON.stringify(payload)
+     });
+     if(!res.ok) throw new Error(await res.text());
+     const data=await res.json();
+     S.mode="live";
+     const st=document.getElementById("aiStatus");
+     st.textContent="AI LIVE";
+     st.className="status live";
+     return data;
+   }catch(err){
+     console.warn("AI backend unavailable; fallback to demo", err);
+   }
  }
- S.mode="mock";document.getElementById("aiStatus").textContent="DEMO AI";document.getElementById("aiStatus").className="status mock";
+ S.mode="mock";
+ const st=document.getElementById("aiStatus");
+ st.textContent="DEMO AI";
+ st.className="status";
  return mockReply(payload);
 }
 function mockReply(p){
- const t=p.player_text,day=p.day,turn=p.turn;
+ const t=p.player_text, day=p.day, turn=p.turn;
  const has=(arr)=>arr.some(x=>t.includes(x));
- let emotion="neutral",gesture="still",dialogue="",memory_importance=1,memory_summary="",trust_delta=0,affection_delta=0,respect_delta=0,guard_delta=0,selfEsteem_delta=0,fightingSpirit_delta=0;
- if(has(["好き","かっこいい","会いたい","大切"])){emotion="blush";gesture="look_away";affection_delta=8;trust_delta=2;memory_importance=4;memory_summary=`あなたは剛ノ山に好意を示した：「${t.slice(0,35)}」`;dialogue=day===1?"……初対面で何言ってんだ。":"……今それ言うの、反則だろ。";}
- else if(has(["心配","無理","休","痛","大丈夫"])){emotion=day===2?"annoyed":"soft";gesture="look_away";trust_delta=5;affection_delta=2;dialogue=day===2?"……大げさだ。相撲取ってりゃ、これくらい普通だ。":"……心配されるの、慣れてない。けど……ありがとな。";}
- else if(has(["価値","勝ち負け","結果だけ","相撲だけ"])){emotion="serious";gesture="still";trust_delta=8;selfEsteem_delta=7;memory_importance=5;memory_summary=`勝敗だけで剛ノ山の価値は決まらないという言葉：「${t.slice(0,48)}」`;dialogue=day===3?"……それ、本気で言ってるなら。……忘れたくない。":"……そういう考え方もあるのか。";}
- else if(has(["プリン","甘い","二個","2個"])){emotion="blush";gesture="look_away";affection_delta=4;dialogue="……一個、お前にやろうと思ってた。いらないなら俺が食う。";}
- else if(has(["頑張","勝","負けるな"])){emotion="serious";fightingSpirit_delta=5;respect_delta=2;dialogue=day===3?"……次は勝つ。そう言っとく。":"……言われなくてもやる。";}
- else if(has(["なんで","どうして","なぜ","？","?"])){emotion="serious";trust_delta=2;dialogue=day===3?"……分かんねえ。勝てない自分を見るのが、一番嫌なのかもな。":"……それ、今答えないと駄目か？";}
- else{
+ let emotion="neutral", gesture="still", dialogue="", memory_importance=1, memory_summary="";
+ let trust_delta=0, affection_delta=0, respect_delta=0, guard_delta=0, selfEsteem_delta=0, fightingSpirit_delta=0;
+
+ if(has(["好き","かっこいい","会いたい","大切"])){
+   emotion="blush"; gesture="look_away"; affection_delta=8; trust_delta=2;
+   memory_importance=4; memory_summary=`あなたは剛ノ山に好意を示した：「${t.slice(0,35)}」`;
+   dialogue=day===1 ? "……初対面で何言ってんだ。" : "……今それ言うの、反則だろ。";
+ } else if(has(["心配","無理","休","痛","大丈夫"])){
+   emotion=day===2 ? "annoyed" : "soft"; gesture="look_away"; trust_delta=5; affection_delta=2;
+   dialogue=day===2 ? "……大げさだ。相撲取ってりゃ、これくらい普通だ。" : "……心配されるの、慣れてない。けど……ありがとな。";
+ } else if(has(["価値","勝ち負け","結果だけ","相撲だけ"])){
+   emotion="serious"; gesture="still"; trust_delta=8; selfEsteem_delta=7;
+   memory_importance=5; memory_summary=`勝敗だけで剛ノ山の価値は決まらないという言葉：「${t.slice(0,48)}」`;
+   dialogue=day===3 ? "……それ、本気で言ってるなら。……忘れたくない。" : "……そういう考え方もあるのか。";
+ } else if(has(["プリン","甘い","二個","2個"])){
+   emotion="blush"; gesture="look_away"; affection_delta=4;
+   dialogue="……一個、お前にやろうと思ってた。いらないなら俺が食う。";
+ } else if(has(["頑張","勝","負けるな"])){
+   emotion="serious"; fightingSpirit_delta=5; respect_delta=2;
+   dialogue=day===3 ? "……次は勝つ。そう言っとく。" : "……言われなくてもやる。";
+ } else if(has(["なんで","どうして","なぜ","？","?"])){
+   emotion="serious"; trust_delta=2;
+   dialogue=day===3 ? "……分かんねえ。勝てない自分を見るのが、一番嫌なのかもな。" : "……それ、今答えないと駄目か？";
+ } else {
    const pools={
      1:["……そんなこと言う広報、初めて見た。","……お前、思ってたより普通に喋るんだな。","……変なやつ。まあ、嫌いじゃない。"],
      2:["……よく見てるな。","……そこまで気にするほどじゃない。","……ふっ。お前と話すと調子狂う。"],
      3:["……慰め方、下手だな。","……でも、黙って帰られるよりはマシか。","……もう少しだけ、話していけよ。"]
-   };const pool=pools[day];dialogue=pool[(S.history.length+turn)%pool.length];
+   };
+   const pool=pools[day];
+   dialogue=pool[(S.history.length+turn)%pool.length];
+   emotion=day===3 ? "tired" : "neutral";
  }
- return {dialogue,emotion,gesture,trust_delta,affection_delta,respect_delta,guard_delta,selfEsteem_delta,fightingSpirit_delta,injury_delta:0,fatigue_delta:0,memory_importance,memory_summary,should_end_scene:false};
+ return {dialogue, emotion, gesture, trust_delta, affection_delta, respect_delta, guard_delta, selfEsteem_delta, fightingSpirit_delta, injury_delta:0, fatigue_delta:0, memory_importance, memory_summary, should_end_scene:false};
 }
+
 function render(){
  const sc=SCENES[S.day];
- bg.className=`bg ${sc.bg}`;document.getElementById("location").textContent=sc.place;document.getElementById("record").textContent=`${S.wins}勝${S.losses}敗`;document.getElementById("condition").textContent=condition();
- document.getElementById("dayLabel").textContent=`DAY ${S.day}`;document.getElementById("sceneTitle").textContent=sc.title;lead.textContent=sc.lead;
- log.innerHTML="";setVisual(sc.expr,"still");bubble("gono",sc.opening);promptEl.textContent=sc.prompts[S.turn]||"自由に話してください。";
- input.disabled=false;sendBtn.disabled=false;input.value="";
+ bg.className=`bg ${sc.bg}`;
+ document.getElementById("location").textContent=sc.place;
+ document.getElementById("record").textContent=`${S.wins}勝${S.losses}敗`;
+ document.getElementById("condition").textContent=condition();
+ document.getElementById("dayLabel").textContent=`DAY ${S.day}`;
+ document.getElementById("sceneTitle").textContent=sc.title;
+ lead.textContent=sc.lead;
+ log.innerHTML="";
+ setVisual(sc.expr, "still");
+ bubble("gono", sc.opening);
+ promptEl.textContent=sc.prompts[S.turn] || "自由に話してください。";
+ input.disabled=false; sendBtn.disabled=false; input.value="";
+ save();
 }
+
 async function send(){
- const text=input.value.trim();if(!text)return;
- input.disabled=true;sendBtn.disabled=true;bubble("you",text);
- S.history.push({day:S.day,turn:S.turn,player:text});typing();
+ const text=input.value.trim();
+ if(!text) return;
+ input.disabled=true; sendBtn.disabled=true;
+ bubble("you", text);
+ S.history.push({day:S.day, turn:S.turn, player:text});
+ typing();
  const r=await askAI(text);
- const delay=S.mode==="live"?250:650;await new Promise(x=>setTimeout(x,delay));
- document.getElementById("typing")?.remove();applyAI(r);setVisual(r.emotion||"neutral",r.gesture||"still");
- const labels={blush:"目をそらした",soft:"少し表情がゆるんだ",annoyed:"眉をひそめた",tired:"疲れている",pain:"痛みをこらえている",serious:"真剣な顔"};
- tag(labels[r.emotion]||"");bubble("gono",r.dialogue);
- S.history[S.history.length-1].gono=r.dialogue;S.history[S.history.length-1].emotion=r.emotion;S.lastReply=r.dialogue;save();
- setTimeout(afterReply,250);
+ const delay=S.mode==="live" ? 340 : 680;
+ await new Promise(x=>setTimeout(x, delay));
+ document.getElementById("typing")?.remove();
+ applyAI(r);
+ setVisual(r.emotion || "neutral", r.gesture || "still");
+ const labels={
+   blush:"目をそらした",
+   soft:"少し表情がゆるんだ",
+   annoyed:"眉をひそめた",
+   tired:"疲れが見える",
+   pain:"痛みをこらえている",
+   serious:"視線がまっすぐ返ってきた",
+   smile:"少し笑った"
+ };
+ showExpression(labels[r.emotion] || "");
+ bubble("gono", r.dialogue);
+ S.history[S.history.length-1].gono=r.dialogue;
+ S.history[S.history.length-1].emotion=r.emotion;
+ S.lastReply=r.dialogue;
+ save();
+ setTimeout(afterReply, 240);
 }
+
 function afterReply(){
- const sc=SCENES[S.day];const nextTurn=S.turn+1;
- if(nextTurn<sc.maxTurns){
-   const w=document.createElement("div");w.className="next";w.innerHTML=`<button>もう少し話す</button>`;log.appendChild(w);
-   w.querySelector("button").onclick=()=>{w.remove();S.turn=nextTurn;promptEl.textContent=sc.prompts[S.turn]||"もう一言、自由に話してください。";
-     if(S.day===2&&S.turn===3){bubble("narr","剛ノ山がコンビニ袋を持ち直した。中にはプリンが二つ見える。");setVisual("blush","look_away")}
-     if(S.day===3&&S.turn===4){bubble("gono","お前はさ。……勝てない力士って、価値ないと思うか？");setVisual("serious","still")}
-     input.disabled=false;sendBtn.disabled=false;input.value="";input.focus();save();
+ const sc=SCENES[S.day];
+ const nextTurn=S.turn + 1;
+ if(nextTurn < sc.maxTurns){
+   const w=document.createElement("div");
+   w.className="next";
+   w.innerHTML=`<button>もう少し話す</button>`;
+   log.appendChild(w);
+   w.querySelector("button").onclick=()=>{
+     w.remove();
+     S.turn=nextTurn;
+     promptEl.textContent=sc.prompts[S.turn] || "もう一言、自由に話してください。";
+     if(S.day===2 && S.turn===3){
+       bubble("narr", "剛ノ山がコンビニ袋を持ち直した。中にはプリンが二つ見える。");
+       setVisual("blush", "look_away");
+       showExpression("少し気まずそうに目をそらした");
+     }
+     if(S.day===3 && S.turn===4){
+       bubble("gono", "お前はさ。……勝てない力士って、価値ないと思うか？");
+       setVisual("serious", "still");
+     }
+     input.disabled=false; sendBtn.disabled=false; input.value=""; input.focus();
+     save();
    };
- }else{
-   bubble("narr",sc.ending);
-   const w=document.createElement("div");w.className="next";w.innerHTML=`<button>${S.day===3?"プロローグを終える":"次の日へ"}</button>`;log.appendChild(w);
-   w.querySelector("button").onclick=S.day===3?finish:nextDay;
+ } else {
+   bubble("narr", sc.ending);
+   const w=document.createElement("div");
+   w.className="next";
+   w.innerHTML=`<button>${S.day===3 ? "プロローグを終える" : "次の日へ"}</button>`;
+   log.appendChild(w);
+   w.querySelector("button").onclick=S.day===3 ? finish : nextDay;
  }
 }
+
 function nextDay(){
- const n=S.day+1,t=document.getElementById("transition");document.getElementById("transN").textContent=`Day ${n}`;document.getElementById("transT").textContent=SCENES[n].title;t.classList.add("show");
- setTimeout(()=>{S.day=n;S.turn=0;if(n===2){S.wins=2;S.injury=8}else if(n===3){S.wins=2;S.losses=1;S.fatigue=26;S.selfEsteem=clamp(S.selfEsteem-6)}save();t.classList.remove("show");render()},1100)
+ const n=S.day+1;
+ const t=document.getElementById("transition");
+ document.getElementById("transN").textContent=`Day ${n}`;
+ document.getElementById("transT").textContent=SCENES[n].title;
+ t.classList.add("show");
+ setTimeout(()=>{
+   S.day=n; S.turn=0;
+   if(n===2){S.wins=2; S.injury=8;}
+   else if(n===3){S.wins=2; S.losses=1; S.fatigue=26; S.selfEsteem=clamp(S.selfEsteem-6);}
+   t.classList.remove("show");
+   render();
+ }, 1100);
 }
+
 function finish(){
- controls.classList.add("hidden");bg.classList.add("blur");log.innerHTML="";lead.innerHTML="";
+ document.getElementById("controls").classList.add("hidden");
+ bg.classList.add("blur");
+ log.innerHTML="";
+ lead.outerHTML = "";
+ setVisual("serious", "look_away");
  const strong=S.memories.filter(m=>m.importance>=3);
- setVisual("serious","look_away");
- lead.outerHTML=`<div class="end"><div style="letter-spacing:.22em;font-size:11px;color:#8d2f2f;font-weight:900">PROLOGUE END</div><h1>三日目の夜</h1>
- <p style="line-height:1.8;color:#786c64">部屋に一人残った剛ノ山は、左足首に触れる。<br>そして、あなたとの会話を思い返した。</p>
- ${strong.length?strong.slice(-2).map(m=>`<div class="quote">「${esc(m.raw||m.text)}」</div>`).join(""):`<div class="quote">あなたが今日言った言葉が、まだ頭に残っている。</div>`}
- <p style="font-size:18px;font-weight:850">「……勝てない力士、か。」</p><h2>つづく</h2>
- <p style="font-size:12px;color:#786c64">Day4を遊びたいと思えたか、剛ノ山を少しでも気にするようになったか。それがこの縦切り版の検証ポイントです。</p>
- <button onclick="resetGame()">最初から遊ぶ</button></div>`;
+ const container=document.querySelector(".main-panel");
+ container.innerHTML=`<div class="end">
+   <div style="letter-spacing:.22em;font-size:11px;color:#8f2f33;font-weight:900">PROLOGUE END</div>
+   <h1>三日目の夜</h1>
+   <p style="line-height:1.8;color:#7b6f67">部屋に一人残った剛ノ山は、左足首に触れる。<br>そして、あなたとの会話を思い返した。</p>
+   ${
+     strong.length
+      ? strong.slice(-2).map(m=>`<div class="quote">「${esc(m.raw || m.text)}」</div>`).join("")
+      : `<div class="quote">あなたが今日言った言葉が、まだ頭に残っている。</div>`
+   }
+   <p style="font-size:20px;font-weight:900;margin-top:14px">「……勝てない力士、か。」</p>
+   <h2>つづく</h2>
+   <p style="font-size:12px;color:#7b6f67">この版の検証ポイントは、剛ノ山の見た目・表情・会話が以前より「気になる相手」になっているかです。</p>
+   <button class="dark" onclick="resetGame()">最初から遊ぶ</button>
+ </div>`;
 }
+
 document.getElementById("memoryBtn").onclick=()=>{
- const body=[...S.memories].reverse().map(m=>`<div class="memory"><b>Day ${m.day} / 重要度 ${m.importance}</b><br>${esc(m.text)}</div>`).join("")||"<p>まだ強く残った言葉はありません。</p>";
- showModal(`<button style="float:right" onclick="closeModal()">×</button><h2>剛ノ山の記憶</h2><p style="font-size:12px;color:#786c64">数値ではなく、後の会話で引用される可能性がある言葉です。</p>${body}`);
+ const body=[...S.memories].reverse().map(m=>`<div class="memory"><b>Day ${m.day} / 重要度 ${m.importance}</b><br>${esc(m.text)}</div>`).join("") || "<p>まだ強く残った言葉はありません。</p>";
+ showModal(`<button style="float:right" onclick="closeModal()">×</button><h2>剛ノ山の記憶</h2><p style="font-size:12px;color:#7c6f67">後の会話で引用される可能性がある、印象に残った言葉です。</p>${body}`);
 };
-function showModal(h){document.getElementById("modal").innerHTML=h;document.getElementById("overlay").classList.add("show")}
+
+document.getElementById("restartBtn").onclick=()=>showModal(`<button style="float:right" onclick="closeModal()">×</button><h2>最初から遊ぶ</h2><p>現在の会話・記憶を消して最初から始めます。</p><button class="dark" onclick="resetGame()">リセットする</button>`);
+
+function showModal(h){
+ document.getElementById("modal").innerHTML=h;
+ document.getElementById("overlay").classList.add("show");
+}
 function closeModal(){document.getElementById("overlay").classList.remove("show")}
-function resetGame(){localStorage.removeItem(STATE_KEY);location.reload()}
-document.getElementById("overlay").onclick=e=>{if(e.target.id==="overlay")closeModal()}
-document.getElementById("restartBtn").onclick=()=>showModal(`<button style="float:right" onclick="closeModal()">×</button><h2>最初から遊ぶ</h2><p>現在の会話・記憶を消して最初から始めます。</p><button onclick="resetGame()">リセットする</button>`);
+document.getElementById("overlay").onclick=e=>{if(e.target.id==="overlay") closeModal()}
+function resetGame(){localStorage.removeItem(KEY); location.reload()}
 sendBtn.onclick=send;
-window.closeModal=closeModal;window.resetGame=resetGame;
-render();save();
+window.closeModal=closeModal;
+window.resetGame=resetGame;
+render();
 </script>
 </body>
 </html>
