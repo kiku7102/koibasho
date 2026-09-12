@@ -3,744 +3,364 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#130f0d">
-<title>恋場所 〜恋の決まり手〜 | Prologue v6</title>
+<meta name="theme-color" content="#171311">
+<title>恋場所 〜恋の決まり手〜 | Prologue v7</title>
 <style>
 :root{
-  --ink:#241c18;
-  --paper:#fff9f1;
-  --paper2:#f6eee2;
-  --panel:#fffdf9;
-  --muted:#7c6f67;
-  --line:#dcc8b0;
-  --gold:#c89d58;
-  --gold2:#e2c48f;
-  --crimson:#8f2f33;
-  --forest:#2e4c45;
-  --deep:#130f0d;
-  --shadow:0 18px 46px rgba(31,18,11,.25);
+ --ink:#2a211d;--paper:#fff9f1;--panel:#fffdf9;--muted:#81736b;--line:#decbb6;
+ --crimson:#913237;--gold:#c89b55;--deep:#171311;--green:#34564c;--shadow:0 18px 48px rgba(37,22,14,.18)
 }
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;background:#171311;color:var(--ink)}
-button,textarea{font:inherit}
-button{cursor:pointer}
-#app{max-width:640px;min-height:100dvh;margin:auto;background:var(--paper);position:relative;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.45)}
-.topbar{position:absolute;inset:0 0 auto 0;z-index:40;padding:14px 14px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none}
-.logo{
-  color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)
-}
-.logo b{display:block;font-size:18px;letter-spacing:.03em}
-.logo span{display:block;margin-top:2px;font-size:10px;opacity:.78;letter-spacing:.1em}
-.status{pointer-events:auto;border-radius:999px;padding:8px 12px;font-size:10px;font-weight:900;letter-spacing:.08em;color:#fff;background:rgba(92,70,45,.85);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px)}
-.status.live{background:rgba(53,112,78,.92)}
-.stage{position:relative;height:61dvh;min-height:440px;overflow:hidden;background:#b6a896}
-.bg{position:absolute;inset:0;transition:.5s ease;transform:scale(1.02)}
-.bg::before,.bg::after{content:"";position:absolute;inset:0;pointer-events:none}
-.bg::after{background:linear-gradient(to bottom,rgba(255,255,255,.03) 36%,rgba(17,10,6,.16) 70%,rgba(17,10,6,.44) 100%)}
-.bg.day1{
-  background:
-  linear-gradient(90deg, rgba(108,87,63,.20) 0 3%, transparent 3% 23%, rgba(108,87,63,.18) 23% 26%, transparent 26% 76%, rgba(108,87,63,.18) 76% 79%, transparent 79% 100%),
-  linear-gradient(#e0cda8 0 24%, #7d6147 24% 27%, #f0e6d5 27% 74%, #a98763 74% 77%, #5e4838 77% 100%);
-}
-.bg.day1::before{
-  background:
-  radial-gradient(circle at 62% 14%, rgba(255,246,215,.68), transparent 25%),
-  radial-gradient(circle at 50% 45%, rgba(255,239,205,.25), transparent 34%);
-}
-.bg.day2{
-  background:
-  repeating-linear-gradient(90deg, rgba(245,245,241,.72) 0 76px, rgba(108,103,95,.11) 76px 80px),
-  linear-gradient(#d8d9d4 0 17%, #7f857f 17% 20%, #e2ddd3 20% 79%, #6e695f 79% 100%);
-}
-.bg.day2::before{background:radial-gradient(circle at 15% 15%, rgba(255,255,255,.72), transparent 20%)}
-.bg.day3{
-  background:
-  linear-gradient(#293448 0 40%, #665b63 40% 43%, #cbb99d 43% 78%, #6e5644 78% 100%);
-}
-.bg.day3::before{
-  background:
-  radial-gradient(circle at 80% 17%, rgba(255,213,117,.45), transparent 13%),
-  radial-gradient(circle at 55% 50%, rgba(255,246,221,.14), transparent 34%);
-}
-.bg.blur{filter:blur(4px) brightness(.78)}
-.location-pill{position:absolute;left:14px;top:76px;z-index:15;background:rgba(31,24,20,.72);color:#fff;border-radius:999px;padding:8px 12px;font-size:12px;backdrop-filter:blur(8px);box-shadow:0 6px 16px rgba(0,0,0,.18)}
-.corner-stats{position:absolute;right:14px;top:78px;z-index:15;text-align:right;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.65)}
-.corner-stats b{display:block;font-size:31px;line-height:1}
-.corner-stats span{display:block;font-size:12px;opacity:.86}
-.stage-title{position:absolute;left:16px;bottom:21px;z-index:14;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.72)}
-.stage-title .day{font-size:11px;letter-spacing:.22em;opacity:.8}
-.stage-title h1{font-size:33px;line-height:1.03;margin:6px 0 0}
-.expression-chip{position:absolute;right:17px;top:128px;z-index:16;background:rgba(255,253,248,.95);border:1px solid rgba(255,255,255,.5);color:#5a493d;border-radius:999px;padding:6px 10px;font-size:10px;box-shadow:0 6px 18px rgba(0,0,0,.12);opacity:0;transform:translateY(5px);transition:.24s}
-.expression-chip.show{opacity:1;transform:none}
-.char-wrap{position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);width:min(93%,500px);height:94%;z-index:10;transition:.35s ease}
-.char-wrap svg{width:100%;height:100%;display:block;filter:drop-shadow(0 22px 16px rgba(0,0,0,.25))}
-.char-wrap.lookaway{transform:translateX(-52%)}
-.char-wrap.close{transform:translateX(-50%) scale(1.04)}
-.char-wrap.breathe{animation:breathe 3.6s ease-in-out infinite}
-.char-wrap.bump{animation:bump .42s ease}
-@keyframes breathe{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
-@keyframes bump{0%,100%{transform:translateX(-50%)}45%{transform:translateX(-50%) scale(1.035)}}
-.nameplate{
-  position:absolute;right:16px;bottom:20px;z-index:16;
-  background:rgba(255,251,244,.92);border:1px solid rgba(255,255,255,.48);backdrop-filter:blur(8px);
-  border-radius:18px;padding:9px 12px;box-shadow:0 10px 26px rgba(0,0,0,.12)
-}
-.nameplate b{display:block;font-size:13px}
-.nameplate span{display:block;margin-top:1px;font-size:10px;color:var(--muted)}
-.spark{position:absolute;inset:0;pointer-events:none;z-index:13;background:
-  radial-gradient(circle at 47% 35%, rgba(255,255,255,.17), transparent 20%),
-  radial-gradient(circle at 56% 43%, rgba(255,255,255,.08), transparent 18%);
-}
-.main-panel{
-  position:relative;z-index:20;margin-top:-24px;background:linear-gradient(#fffdf9,#fbf4e9);border-radius:28px 28px 0 0;
-  min-height:39dvh;padding:18px 14px calc(175px + env(safe-area-inset-bottom));box-shadow:0 -8px 22px rgba(0,0,0,.05)
-}
-.lead{
-  background:linear-gradient(#fff,#fffaf3);border:1px solid var(--line);border-radius:18px;padding:12px 13px;color:var(--muted);
-  font-size:13px;line-height:1.7;box-shadow:0 4px 18px rgba(32,18,10,.04);margin-bottom:11px
-}
-.log{display:grid;gap:10px}
-.bubble{max-width:92%;border-radius:20px;padding:12px 14px;font-size:16px;line-height:1.7;white-space:pre-wrap;box-shadow:0 6px 18px rgba(31,18,11,.05)}
-.bubble .speaker{font-size:10px;font-weight:900;letter-spacing:.06em;opacity:.68;margin-bottom:4px}
-.bubble.gono{justify-self:start;background:linear-gradient(#fff,#fff9f3);border:1px solid var(--line);border-bottom-left-radius:6px}
-.bubble.you{justify-self:end;background:linear-gradient(#9b3438,#8b2f33);color:#fff;border-bottom-right-radius:6px}
-.bubble.narr{justify-self:stretch;max-width:100%;text-align:center;background:#fff6dc;border:1px solid #ead3a5;color:#665744;font-size:13px}
-.typing{display:flex;gap:6px;padding:4px 0}
-.typing i{width:7px;height:7px;border-radius:50%;background:#7a6b60;animation:dot 1s infinite ease-in-out}
-.typing i:nth-child(2){animation-delay:.15s}
-.typing i:nth-child(3){animation-delay:.3s}
-@keyframes dot{0%,60%,100%{opacity:.24;transform:none}30%{opacity:1;transform:translateY(-4px)}}
-.controls{
-  position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(640px,100%);z-index:50;
-  background:rgba(255,249,241,.96);border-top:1px solid var(--line);backdrop-filter:blur(14px);padding:9px 10px calc(10px + env(safe-area-inset-bottom))
-}
-.prompt{font-size:12px;color:var(--muted);margin:0 2px 6px}
-textarea{
-  width:100%;height:74px;border:1px solid #ccb9a1;border-radius:17px;background:#fff;padding:11px 12px;
-  resize:none;outline:none;font-size:15px;box-shadow:inset 0 1px 2px rgba(0,0,0,.03)
-}
-textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,157,88,.14)}
-.actions{display:flex;gap:8px;margin-top:8px}
-button{border:0;border-radius:14px;padding:11px 12px;background:#ede1cf;color:var(--ink);font-weight:850}
-button.primary{background:linear-gradient(#9a3438,#8a2f32);color:#fff;flex:1}
-button.gold{background:linear-gradient(#e1bf7b,#cca05b)}
-button.dark{background:#302621;color:#fff}
-button:disabled,textarea:disabled{opacity:.45}
-.next{display:flex;justify-content:flex-end;margin-top:10px}
-.next button{background:#302621;color:#fff}
-.overlay{position:fixed;inset:0;z-index:80;background:rgba(18,13,10,.82);display:none;align-items:center;justify-content:center;padding:15px}
-.overlay.show{display:flex}
-.modal{width:min(520px,100%);max-height:84dvh;overflow:auto;background:var(--paper);border-radius:24px;padding:18px;box-shadow:var(--shadow)}
-.memory{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0;font-size:12px}
-.transition{position:fixed;inset:0;z-index:90;background:#1f1814;color:#fff;display:none;align-items:center;justify-content:center;text-align:center}
-.transition.show{display:flex}
-.transition .n{font-size:48px;font-weight:950}
-.transition .t{font-size:14px;opacity:.75;margin-top:5px}
-.end{text-align:center;padding:22px 8px}
-.end h1{font-size:32px}
-.quote{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin:10px 0;text-align:left}
+html,body{margin:0;background:#151210;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;color:var(--ink)}
+button,textarea,input{font:inherit} button{cursor:pointer;border:0}
+#app{width:min(680px,100%);min-height:100dvh;margin:auto;background:var(--paper);position:relative;overflow:hidden}
 .hidden{display:none!important}
-@media (max-height:760px){
-  .stage{height:56dvh;min-height:390px}
-  .char-wrap{width:83%}
-  .main-panel{padding-bottom:165px}
+.top{
+ position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+ padding:11px 13px;background:rgba(255,249,241,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)
 }
-
-.char-img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  object-position:center bottom;
-  display:block;
-  filter:drop-shadow(0 18px 18px rgba(0,0,0,.24));
-  transition:opacity .22s ease, transform .35s ease;
-  image-rendering:auto;
+.brand b{font-size:18px}.brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:.08em}
+.ai{padding:7px 10px;border-radius:999px;font-size:10px;font-weight:900;color:white;background:#77685d}.ai.live{background:#39755c}
+.screen{min-height:calc(100dvh - 58px);padding-bottom:calc(26px + env(safe-area-inset-bottom))}
+.hero{
+ min-height:310px;position:relative;overflow:hidden;color:#fff;padding:23px 17px;
+ background:radial-gradient(circle at 75% 20%,rgba(233,193,121,.24),transparent 26%),linear-gradient(145deg,#241b17,#453024 60%,#75573b)
 }
-.char-img.swap{
-  opacity:.12;
-  transform:scale(.985);
-}
-
-
-/* Opening */
-.opening{
-  position:fixed;inset:0;z-index:120;background:#130f0d;color:#fff;
-  display:none;overflow:hidden;
-}
-.opening.show{display:block}
-.opening-scene{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  opacity:0;transition:opacity .7s ease;
-}
-.opening-scene.active{opacity:1}
-.opening-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(circle at 50% 28%,rgba(210,164,92,.23),transparent 32%),
-    linear-gradient(#211815 0 54%,#38291f 54% 58%,#5d4737 58% 100%);
-  filter:brightness(.85);
-}
-.opening-bg.dohyo{
-  background:
-    radial-gradient(circle at 50% 60%,#b98d5b 0 18%,#75583d 18% 22%,transparent 22%),
-    linear-gradient(#2b211d 0 47%,#6c5442 47% 50%,#8b6c50 50% 100%);
-}
-.opening-bg.city{
-  background:
-    radial-gradient(circle at 72% 22%,rgba(247,211,141,.18),transparent 18%),
-    linear-gradient(#1d2430 0 48%,#373844 48% 51%,#5b4d41 51% 100%);
-}
-.opening-copy{
-  position:relative;z-index:4;text-align:center;padding:24px;max-width:520px;
-  text-shadow:0 3px 18px rgba(0,0,0,.6)
-}
-.opening-copy .eyebrow{font-size:11px;letter-spacing:.28em;opacity:.7;margin-bottom:10px}
-.opening-copy h1{font-size:34px;line-height:1.35;margin:0 0 12px}
-.opening-copy p{font-size:15px;line-height:1.85;opacity:.9;margin:0}
-.opening-logo{
-  font-size:40px;font-weight:950;letter-spacing:.04em
-}
-.opening-logo small{display:block;font-size:13px;letter-spacing:.2em;margin-top:8px;font-weight:600;opacity:.74}
-.opening-controls{
-  position:absolute;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom));
-  z-index:8;display:flex;justify-content:center;gap:8px;padding:0 14px
-}
-.opening-controls button{
-  background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);
-  backdrop-filter:blur(8px)
-}
-.opening-controls .opening-next{
-  background:#8f2f33;border-color:#8f2f33;min-width:140px
-}
-.opening-char{
-  position:absolute;left:50%;bottom:-3%;transform:translateX(-50%);
-  width:min(62vw,330px);height:62%;object-fit:contain;object-position:center bottom;
-  filter:drop-shadow(0 18px 22px rgba(0,0,0,.35));opacity:.92
-}
-.opening-line{
-  position:absolute;left:16px;right:16px;bottom:95px;z-index:5;
-  background:rgba(15,11,9,.68);border:1px solid rgba(255,255,255,.12);
-  border-radius:18px;padding:14px 16px;backdrop-filter:blur(8px);font-size:16px;line-height:1.75
-}
-.opening-line b{display:block;font-size:11px;letter-spacing:.08em;opacity:.7;margin-bottom:4px}
-.opening-skip-hint{
-  position:absolute;top:16px;right:14px;z-index:10;font-size:10px;opacity:.65
-}
-
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 48%,rgba(16,10,7,.45))}
+.hero-copy{position:relative;z-index:3;max-width:54%}.eyebrow{font-size:10px;letter-spacing:.22em;opacity:.72}
+.hero h1{font-size:38px;line-height:1.05;margin:8px 0}.hero p{font-size:13px;line-height:1.7;opacity:.9}
+.hero-char{position:absolute;right:-25px;bottom:-15px;height:94%;z-index:2;filter:drop-shadow(0 20px 18px rgba(0,0,0,.35))}
+.cards{padding:14px;display:grid;gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 5px 20px rgba(30,15,8,.04)}
+.card h2,.card h3{margin:0 0 6px}.sub{font-size:12px;color:var(--muted);line-height:1.6}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
+.btn{padding:13px 14px;border-radius:15px;background:#eee2d2;color:var(--ink);font-weight:900}
+.btn.primary{background:linear-gradient(#9c373c,#8a2d32);color:#fff}
+.btn.dark{background:#302621;color:#fff}.btn.gold{background:#dfbb76}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.quick button{padding:11px 7px;border-radius:15px;background:#fff;border:1px solid var(--line);font-size:12px;font-weight:850}
+.daybar{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;background:#2d241f;color:#fff}
+.daybar b{font-size:20px}.dots{letter-spacing:.18em;color:#e7c277;font-weight:900}
+.map-title{padding:18px 15px 3px}.map-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 14px}
+.place{min-height:134px;text-align:left;padding:15px;border-radius:21px;border:1px solid var(--line);background:linear-gradient(145deg,#fffdf9,#f7ecdf);position:relative;overflow:hidden}
+.place:disabled{opacity:.42}.place .icon{font-size:29px}.place b{display:block;font-size:17px;margin:9px 0 3px}.place small{color:var(--muted);line-height:1.45}
+.place.visited::after{content:"済";position:absolute;right:10px;top:10px;background:#31584b;color:white;border-radius:999px;padding:4px 7px;font-size:9px}
+.event-head{min-height:350px;position:relative;background:linear-gradient(150deg,#43352a,#1d1815);overflow:hidden;color:#fff}
+.event-head .char{position:absolute;right:-12px;bottom:-20px;height:94%;filter:drop-shadow(0 18px 18px rgba(0,0,0,.35))}
+.event-head .event-copy{position:absolute;left:16px;right:42%;bottom:24px;z-index:3}
+.event-head h1{font-size:28px;line-height:1.15;margin:7px 0}.event-head p{font-size:12px;line-height:1.7;opacity:.88}
+.story{padding:15px}.story-box{background:white;border:1px solid var(--line);border-radius:20px;padding:15px;line-height:1.85;font-size:15px}
+.unlock{margin-top:12px;background:#fff3d4;border:1px solid #e7c986;border-radius:15px;padding:11px;font-size:12px}
+.unlock b{color:#8d5b17}
+.match{padding:24px 16px;text-align:center;background:linear-gradient(#281f1b,#171210);color:#fff;min-height:100dvh}
+.dohyo{width:235px;height:235px;border-radius:50%;margin:20px auto;background:radial-gradient(circle,#cfa46a 0 58%,#83603d 59% 66%,#b99160 67%);box-shadow:0 20px 55px rgba(0,0,0,.45);display:grid;place-items:center}
+.dohyo img{height:225px;max-width:210px;object-fit:contain;filter:drop-shadow(0 12px 10px rgba(0,0,0,.3))}
+.match-log{max-width:480px;margin:auto;line-height:2;color:#e9ded6}.result{font-size:35px;font-weight:950;margin:15px 0}
+.chat-stage{height:47dvh;min-height:360px;position:relative;overflow:hidden;background:linear-gradient(#716553,#b5a287)}
+.chat-stage.day3{background:linear-gradient(#283448,#655b60)}
+.chat-stage img{position:absolute;left:50%;transform:translateX(-50%);bottom:-15px;height:95%;filter:drop-shadow(0 18px 18px rgba(0,0,0,.3));transition:.25s}
+.chat-title{position:absolute;left:15px;top:17px;z-index:4;color:white;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.chat-title b{font-size:22px;display:block}.chat-title small{opacity:.8}
+.chat-main{margin-top:-18px;position:relative;z-index:5;background:var(--paper);border-radius:24px 24px 0 0;padding:15px 12px 175px;min-height:53dvh}
+.log{display:grid;gap:9px}.bubble{max-width:91%;padding:12px 14px;border-radius:19px;line-height:1.65;white-space:pre-wrap}
+.bubble.gono{justify-self:start;background:white;border:1px solid var(--line);border-bottom-left-radius:5px}.bubble.you{justify-self:end;background:var(--crimson);color:#fff;border-bottom-right-radius:5px}.bubble.narr{justify-self:stretch;max-width:100%;background:#fff3d5;text-align:center;font-size:12px}
+.speaker{font-size:9px;font-weight:900;opacity:.65;margin-bottom:3px}
+.chat-controls{position:fixed;z-index:60;bottom:0;left:50%;transform:translateX(-50%);width:min(680px,100%);background:rgba(255,249,241,.96);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:9px 10px calc(10px + env(safe-area-inset-bottom))}
+.chat-controls textarea{width:100%;height:67px;border-radius:16px;border:1px solid #ccb9a1;padding:10px;resize:none;outline:none}
+.prompt{font-size:11px;color:var(--muted);margin:0 2px 5px}
+.overlay{position:fixed;inset:0;z-index:100;background:rgba(13,9,7,.78);display:none;align-items:flex-end;justify-content:center}
+.overlay.show{display:flex}.sheet{width:min(680px,100%);max-height:88dvh;overflow:auto;background:var(--paper);border-radius:26px 26px 0 0;padding:18px 14px calc(20px + env(safe-area-inset-bottom))}
+.sheet-head{display:flex;align-items:center;justify-content:space-between}.sheet-head button{background:#e9ded1;border-radius:999px;width:34px;height:34px}
+.phone-tabs{display:flex;gap:6px;overflow:auto;margin:12px 0}.phone-tabs button{white-space:nowrap;padding:9px 11px;border-radius:999px;background:#eee3d6}.phone-tabs button.active{background:#332823;color:#fff}
+.feed{display:grid;gap:9px}.post,.memory,.notice{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;font-size:13px;line-height:1.65}.post b{display:block;font-size:11px;color:#6f625a}
+.album{display:grid;grid-template-columns:1fr 1fr;gap:8px}.album .memory{min-height:112px}.locked{filter:grayscale(1);opacity:.42}
+.rank{padding:18px;background:linear-gradient(145deg,#33251d,#714a32);color:#fff;border-radius:20px}.rank strong{font-size:30px;display:block}.rank small{opacity:.72}
+.opening{position:fixed;inset:0;z-index:150;background:#130f0d;color:white;display:none}.opening.show{display:block}
+.opening-scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;opacity:0;transition:.6s}.opening-scene.active{opacity:1}
+.opening-scene::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 25%,rgba(215,169,95,.18),transparent 25%),linear-gradient(#211814,#4d3929)}
+.opening-content{position:relative;z-index:3;max-width:520px}.opening h1{font-size:34px;line-height:1.35}.opening p{line-height:1.9;opacity:.84}.opening img{height:50dvh;max-width:65vw;object-fit:contain;filter:drop-shadow(0 20px 22px rgba(0,0,0,.35))}
+.opening-controls{position:absolute;z-index:5;bottom:calc(18px + env(safe-area-inset-bottom));left:12px;right:12px;display:flex;gap:8px;justify-content:center}.opening-controls button{padding:12px 16px;border-radius:15px;background:rgba(255,255,255,.14);color:white}.opening-controls .next{background:var(--crimson);min-width:135px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);top:72px;z-index:140;background:#332823;color:#fff;padding:9px 13px;border-radius:999px;font-size:11px;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1}
+@media(max-width:460px){.hero h1{font-size:34px}.hero-copy{max-width:58%}.map-grid{grid-template-columns:1fr 1fr}.event-head{min-height:320px}}
 </style>
 </head>
 <body>
+<div id="app">
+  <header class="top">
+    <div class="brand"><b>恋場所</b><small>恋の決まり手は、あなたの言葉。</small></div>
+    <div id="aiStatus" class="ai">DEMO AI</div>
+  </header>
+  <main id="screen" class="screen"></main>
+</div>
 
+<div id="overlay" class="overlay"><div id="sheet" class="sheet"></div></div>
+<div id="toast" class="toast"></div>
 
 <div id="opening" class="opening">
-  <div id="openingSkipHint" class="opening-skip-hint"></div>
-
-  <!-- 0: protagonist -->
-  <section class="opening-scene active" data-opening="0">
-    <div class="opening-bg city"></div>
-    <div class="opening-copy">
-      <div class="eyebrow">YOUR FIRST DAY</div>
-      <h1>あなたは今日から、<br>雷神部屋の広報担当。</h1>
-      <p>
-        取材対応、SNS、雑用。<br>
-        相撲に詳しいわけでも、恋をしに来たわけでもない。
-      </p>
-    </div>
+  <section class="opening-scene active">
+    <div class="opening-content"><div class="eyebrow">YOUR FIRST DAY</div><h1>あなたは今日から、<br>雷神部屋の広報担当。</h1><p>相撲に詳しいわけでも、恋をしに来たわけでもない。<br>ただ、新しい仕事が始まるだけだった。</p></div>
   </section>
-
-  <!-- 1: protagonist perspective -->
-  <section class="opening-scene" data-opening="1">
-    <div class="opening-bg"></div>
-    <div class="opening-copy">
-      <div class="eyebrow">8:42 AM / RAIJIN STABLE</div>
-      <h1>「……大きい。」</h1>
-      <p>
-        玄関で最初に思ったのは、それだけだった。<br>
-        そして次に、少し怖そうだと思った。
-      </p>
-    </div>
+  <section class="opening-scene">
+    <div class="opening-content"><div class="eyebrow">8:42 AM / RAIJIN STABLE</div><h1>「……大きい。」</h1><p>玄関で最初に思ったのは、それだけだった。<br>そして次に、少し怖そうだと思った。</p></div>
   </section>
-
-  <!-- 2: world -->
-  <section class="opening-scene" data-opening="2">
-    <div class="opening-bg dohyo"></div>
-    <div class="opening-copy" style="margin-bottom:34vh">
-      <div class="eyebrow">HONBASHO / DAY 1</div>
-      <h1>土俵の上では、<br>一瞬で勝負が決まる。</h1>
-      <p>
-        勝つか、負けるか。<br>
-        けれど、人の心はそんなに単純じゃない。
-      </p>
-    </div>
-    <img class="opening-char" src="./assets/gonoyama/serious.webp" alt="剛ノ山">
+  <section class="opening-scene">
+    <div class="opening-content"><img src="./assets/gonoyama/serious.webp"><h1>剛ノ山 剛志</h1><p>27歳。十両上位。無口、頑固、負けず嫌い。<br>同情されるのが、何より嫌い。</p></div>
   </section>
-
-  <!-- 3: Gonoyama -->
-  <section class="opening-scene" data-opening="3">
-    <div class="opening-bg"></div>
-    <div class="opening-copy" style="margin-bottom:32vh">
-      <div class="eyebrow">GONOYAMA TAKESHI</div>
-      <h1>剛ノ山 剛志</h1>
-      <p>
-        27歳。十両上位。無口、頑固、負けず嫌い。<br>
-        同情されるのが、何より嫌い。
-      </p>
-    </div>
-    <img class="opening-char" src="./assets/gonoyama/neutral.webp" alt="剛ノ山">
+  <section class="opening-scene">
+    <div class="opening-content"><h1>あなたの何気ない一言が、<br>この男の明日を変える。</h1><p>励ますのか。止めるのか。黙ってそばにいるのか。<br>正解は、誰にも分からない。</p></div>
   </section>
-
-  <!-- 4: theme -->
-  <section class="opening-scene" data-opening="4">
-    <div class="opening-bg city"></div>
-    <div class="opening-copy">
-      <div class="eyebrow">THIS IS YOUR STORY, TOO</div>
-      <h1>
-        あなたの何気ない一言が、<br>
-        この男の明日を変える。
-      </h1>
-      <p>
-        励ますのか。止めるのか。黙ってそばにいるのか。<br>
-        正解は、誰にも分からない。
-      </p>
-    </div>
+  <section class="opening-scene">
+    <div class="opening-content"><div style="font-size:44px;font-weight:950">恋場所</div><p>〜 恋の決まり手 〜</p><p>恋の決まり手は、あなたの言葉。</p></div>
   </section>
-
-  <!-- 5: title -->
-  <section class="opening-scene" data-opening="5">
-    <div class="opening-bg city"></div>
-    <div class="opening-copy">
-      <div class="opening-logo">
-        恋場所
-        <small>〜 恋の決まり手 〜</small>
-      </div>
-      <p style="margin-top:20px">恋の決まり手は、あなたの言葉。</p>
-    </div>
-  </section>
-
-  <!-- 6: bridge to Day1 -->
-  <section class="opening-scene" data-opening="6">
-    <div class="opening-bg"></div>
-    <div class="opening-line">
-      <b>剛ノ山</b>
-      「……新しい広報？　俺、取材とか苦手だから。」
-    </div>
-    <img class="opening-char" src="./assets/gonoyama/neutral.webp" alt="剛ノ山" style="height:74%;width:min(76vw,400px)">
-  </section>
-
-  <div class="opening-controls">
-    <button id="openingSkip" class="hidden">オープニングをスキップ</button>
-    <button id="openingNext" class="opening-next">次へ</button>
-  </div>
+  <div class="opening-controls"><button id="opSkip" class="hidden">スキップ</button><button id="opNext" class="next">次へ</button></div>
 </div>
-
-<div id="app">
-  <div class="topbar">
-    <div class="logo"><b>恋場所 〜恋の決まり手〜</b><span>PROLOGUE / GONOYAMA ROUTE / PROTAGONIST OPENING</span></div>
-    <div id="aiStatus" class="status">DEMO AI</div>
-  </div>
-
-  <section class="stage">
-    <div id="bg" class="bg day1"></div>
-    <div class="spark"></div>
-    <div id="location" class="location-pill">雷神部屋・玄関</div>
-    <div class="corner-stats"><b id="record">1勝0敗</b><span id="condition">平常</span></div>
-    <div id="expressionChip" class="expression-chip">……</div>
-    <div id="charWrap" class="char-wrap breathe"><div id="charArt" style="width:100%;height:100%"></div></div>
-    <div class="nameplate"><b>剛ノ山 剛志</b><span>27歳 / 十両上位 / 188cm / 168kg</span></div>
-    <div class="stage-title"><div class="day" id="dayLabel">DAY 1</div><h1 id="sceneTitle">初対面</h1></div>
-  </section>
-
-  <main class="main-panel">
-    <div id="lead" class="lead"></div>
-    <div id="log" class="log"></div>
-  </main>
-
-  <div id="controls" class="controls">
-    <div id="prompt" class="prompt">あなたなら、何と言う？</div>
-    <textarea id="input" placeholder="自分の言葉で話す"></textarea>
-    <div class="actions">
-      <button id="memoryBtn">記憶</button>
-      <button id="restartBtn" class="gold">最初から</button>
-      <button id="sendBtn" class="primary">話す</button>
-    </div>
-  </div>
-</div>
-
-<div id="overlay" class="overlay"><div id="modal" class="modal"></div></div>
-<div id="transition" class="transition"><div><div id="transN" class="n"></div><div id="transT" class="t"></div></div></div>
 
 <script src="./config.js"></script>
 <script>
 const API_BASE=(window.KOIBASHO_API_BASE||"").replace(/\/$/,"");
-const KEY="koibasho_prologue_v6";
+const KEY="koibasho_v7_lifesim";
+const OPENING_KEY="koibasho_opening_seen_v3";
 const initial={
- day:1,turn:0,wins:1,losses:0,injury:0,fatigue:8,
- affection:6,trust:5,respect:7,guard:16,selfEsteem:58,fightingSpirit:61,
- memories:[],history:[],lastReply:"",mode:"mock"
+ day:1, phase:"home", actionsLeft:2, visited:{}, knowledge:[], album:["first_meeting"],
+ wins:0,losses:0, injury:0,fatigue:8,affection:6,trust:5,respect:7,guard:16,
+ selfEsteem:58,fightingSpirit:61,dependency:3, memories:[],history:[],mode:"mock",
+ chatTurn:0, phoneThreads:[], seenEvents:[], finished:false
 };
 let S=JSON.parse(localStorage.getItem(KEY)||"null")||structuredClone(initial);
-
-const SCENES={
- 1:{title:"初対面",place:"雷神部屋・玄関",bg:"day1",expr:"neutral",outfit:"yukata",lead:"本場所初日。新任広報として雷神部屋に入ったあなたの前で、大きな男が足を止めた。予想していたよりもずっと無口そうで、少しだけ近寄りがたい。",opening:"……新しい広報？　俺、取材とか苦手だから。",maxTurns:4,
- prompts:["初対面です。自由に話しかけてください。","剛ノ山はまだ帰らず、少しこちらを見ています。","少しだけ空気が柔らかくなりました。","帰り際です。最後に一言伝えられます。"],
- ending:"……明日も来るんだろ？"},
- 2:{title:"小さな違和感",place:"国技館・支度部屋前",bg:"day2",expr:"neutral",outfit:"sumo",lead:"二日目。剛ノ山は連勝した。しかし支度部屋から出た瞬間だけ、左足に体重をかけるのを避けた。いつもより返事が少し短い。",opening:"……何見てる。別に何でもない。",maxTurns:5,
- prompts:["足のことに触れても、触れなくても構いません。","剛ノ山は平気なふりをしています。","話題を変えても構いません。","会話の途中、剛ノ山がコンビニ袋を持ち直しました。","プリンが二つあります。"],
- ending:"……いらないなら、俺が二個食う。"},
- 3:{title:"初黒星",place:"雷神部屋・夜",bg:"day3",expr:"tired",outfit:"casual",lead:"三日目。初黒星。取材を終えた剛ノ山は、薄暗い部屋でスポーツドリンクを持ったまま座っている。普段より静かで、どこか疲れて見えた。",opening:"負けたやつに何言えばいいか、困るだろ。",maxTurns:5,
- prompts:["今の剛ノ山に何と言いますか？","剛ノ山は会話を終わらせません。","普段より少し本音が見えています。","剛ノ山はあなたの返答を待っています。","「勝てない力士って、価値ないと思うか？」"],
- ending:"……覚えとく。お前が今日言ったこと。"}
+const $=s=>document.querySelector(s);
+const screen=$("#screen");
+const SPRITES={neutral:"neutral.webp",soft:"soft.webp",blush:"blush.webp",serious:"serious.webp",annoyed:"annoyed.webp",tired:"tired.webp",sad:"sad.webp",pain:"pain.webp",smile:"soft.webp"};
+const sp=e=>`./assets/gonoyama/${SPRITES[e]||SPRITES.neutral}`;
+const DAYS={
+ 1:{title:"初対面",theme:"誰なんだ、この人",match:"win",places:[
+   ["stable","雷神部屋","稽古と部屋の日常","🏠"],["arena","国技館","初日の本場所","🏟️"],["sns","SNS","今日の評判を見る","📱"]
+ ]},
+ 2:{title:"小さな違和感",theme:"思っていたより可愛い",match:"win",places:[
+   ["stable","雷神部屋","朝稽古を見る","🏠"],["arena","国技館","支度部屋周辺","🏟️"],["store","コンビニ","帰り道","🏪"],["sns","SNS","連勝への反応","📱"]
+ ]},
+ 3:{title:"初黒星",theme:"この人、思っていたより脆い",match:"lose",places:[
+   ["stable","雷神部屋","夜の部屋","🏠"],["arena","支度部屋","取組後","🚪"],["reporter","記者エリア","取材陣の空気","📰"],["sns","SNS","黒星への反応","📱"]
+ ]}
 };
-
+const EVENTS={
+ "1:stable":{title:"初めて見る稽古",expr:"serious",text:"稽古場では、さっきまで無愛想だった剛ノ山が別人のように動いている。誰より早く土俵へ入り、終われば黙って後輩のまわしを直した。",know:["稽古では誰より真面目","後輩への気遣い"],album:null},
+ "1:arena":{title:"初日の本場所",expr:"neutral",text:"広報として初めて国技館の裏側へ入る。剛ノ山は取組前、取材陣を避けるように壁際を歩いていた。カメラを向けられると露骨に眉をひそめる。",know:["取材が苦手"],album:null},
+ "1:sns":{title:"初日の評判",expr:"neutral",text:"『剛ノ山、怖そうだけど相撲は好き』『インタビュー短すぎて草』。強さへの期待と、無愛想さへの反応が半々だ。",know:["無愛想だと思われている","周囲から期待されている"],album:null},
+ "2:stable":{title:"猫だけには弱い",expr:"soft",text:"部屋の裏口に近所の猫が現れた。剛ノ山は誰も見ていないと思ったのか、しゃがんで指を差し出す。猫は迷いなく大きな膝へ乗った。あなたに気づくと、彼は固まった。",know:["猫に弱い"],album:"cat_smile"},
+ "2:arena":{title:"一瞬の違和感",expr:"pain",text:"支度部屋から出た剛ノ山が、ほんの一歩だけ左足への荷重を避けた。すぐ普段の歩き方へ戻ったが、見間違いではない。",know:["左足を庇っていた"],album:"left_foot"},
+ "2:store":{title:"プリンは二つ",expr:"blush",text:"コンビニの冷蔵棚の前で剛ノ山と鉢合わせる。手にはプリンが二つ。あなたの視線に気づくと、『……一個は明日の分だ』と聞いてもいない言い訳をした。",know:["プリンが好き","甘い物を隠したがる"],album:"pudding"},
+ "2:sns":{title:"連勝の重さ",expr:"serious",text:"『今場所こそ幕内ある』『剛ノ山なら全勝いける』。祝福の言葉なのに、期待が積み上がっていくのが見える。本人がこれを見ているかは分からない。",know:["幕内昇進を期待されている","SNSの期待が高い"],album:null},
+ "3:stable":{title:"消えない明かり",expr:"tired",text:"夜の部屋。皆が帰ったあとも稽古場だけ明かりがついている。剛ノ山は一人で立ち合いの映像を何度も巻き戻していた。",know:["負けると一人で反省する"],album:"night_review"},
+ "3:arena":{title:"初黒星の背中",expr:"sad",text:"取組後、剛ノ山は記者を避けて壁を見たまま座っている。呼吸が整っても、立ち上がろうとしない。左足首へ手を伸ばしかけ、あなたに気づいてやめた。",know:["黒星を強く引きずっている","左足の痛みを隠している"],album:"first_loss"},
+ "3:reporter":{title:"記事になる前の噂",expr:"annoyed",text:"記者たちは『足じゃないか』『メンタルだろ』と好き勝手に話している。新田という記者だけが『本人が言ってないことを書くなよ』と止めた。",know:["記者の間で怪我を疑われている","新田記者は慎重"],album:null},
+ "3:sns":{title:"黒星の夜",expr:"tired",text:"『期待外れ』『今日の剛ノ山、弱気だった？』。たった一敗で言葉の温度が変わる。昨日までの称賛が、そのまま圧力に見えた。",know:["黒星でSNS批判が出ている"],album:null}
+};
+const ALBUM={
+ first_meeting:["No.01","初対面","雷神部屋で剛ノ山と出会った。"],
+ cat_smile:["No.02","猫には勝てない","大きな膝に猫が乗った。"],
+ left_foot:["No.03","一瞬の違和感","左足を庇う動きを見た。"],
+ pudding:["No.04","プリンは二つ","聞いてもいない言い訳。"],
+ night_review:["No.05","消えない明かり","一人で黒星を見返していた。"],
+ first_loss:["No.06","初黒星の背中","立ち上がれないほど悔しかった。"]
+};
 function save(){localStorage.setItem(KEY,JSON.stringify(S))}
-function esc(s){return String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]))}
 function clamp(n){return Math.max(0,Math.min(100,n))}
-function condition(){if(S.injury>=25)return"左足に痛み";if(S.fatigue>=30)return"疲労あり";return"平常"}
-
-const bg=document.getElementById("bg"), charWrap=document.getElementById("charWrap"), charArt=document.getElementById("charArt"),
-log=document.getElementById("log"), lead=document.getElementById("lead"), input=document.getElementById("input"),
-sendBtn=document.getElementById("sendBtn"), promptEl=document.getElementById("prompt"),
-expressionChip=document.getElementById("expressionChip");
-
-
-const SPRITES={
-  neutral:"./assets/gonoyama/neutral.webp",
-  soft:"./assets/gonoyama/soft.webp",
-  blush:"./assets/gonoyama/blush.webp",
-  serious:"./assets/gonoyama/serious.webp",
-  annoyed:"./assets/gonoyama/annoyed.webp",
-  tired:"./assets/gonoyama/tired.webp",
-  pain:"./assets/gonoyama/pain.webp",
-  sad:"./assets/gonoyama/sad.webp",
-  smile:"./assets/gonoyama/soft.webp"
-};
-
-function spriteFor(expr){
-  return SPRITES[expr] || SPRITES.neutral;
+function esc(t){return String(t).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]))}
+function toast(t){const x=$("#toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),1600)}
+function rank(){
+ const v=S.affection*.35+S.trust*.35+S.respect*.2+(100-S.guard)*.1-S.dependency*.08;
+ return v<20?"序ノ口":v<30?"序二段":v<42?"三段目":v<55?"幕下":v<68?"十両":v<80?"幕内":v<90?"三役":"横綱";
 }
-
-function preloadSprites(){
-  Object.values(SPRITES).forEach(src=>{
-    const img=new Image();
-    img.src=src;
-  });
-}
-
-function showExpression(text){
- if(!text) return;
- expressionChip.textContent=text;
- expressionChip.classList.add("show");
- setTimeout(()=>expressionChip.classList.remove("show"),1200);
-}
-function setVisual(expr="neutral", gesture="still"){
- const src=spriteFor(expr);
- let img=charArt.querySelector("img.char-img");
- if(!img){
-   img=document.createElement("img");
-   img.className="char-img";
-   img.alt="剛ノ山 剛志";
-   charArt.innerHTML="";
-   charArt.appendChild(img);
- }
- if(img.getAttribute("src")!==src){
-   img.classList.add("swap");
-   const next=new Image();
-   next.onload=()=>{
-     img.src=src;
-     requestAnimationFrame(()=>img.classList.remove("swap"));
-   };
-   next.src=src;
- }else{
-   img.classList.remove("swap");
- }
- charWrap.className="char-wrap breathe";
- if(["look_away","rub_neck"].includes(gesture)) charWrap.classList.add("lookaway");
- if(["step_closer","small_smile"].includes(gesture)) charWrap.classList.add("close");
- if(gesture==="flinch"){
-   charWrap.classList.add("bump");
-   setTimeout(()=>charWrap.classList.remove("bump"),460);
- }
-}
-function bubble(type, text){
- const d=document.createElement("div");
- d.className=`bubble ${type}`;
- if(type==="gono") d.innerHTML=`<div class="speaker">剛ノ山</div>${esc(text)}`;
- else if(type==="you") d.innerHTML=`<div class="speaker">あなた</div>${esc(text)}`;
- else d.textContent=text;
- log.appendChild(d);
- d.scrollIntoView({behavior:"smooth", block:"nearest"});
-}
-function typing(){
- const d=document.createElement("div");
- d.className="bubble gono";
- d.id="typing";
- d.innerHTML=`<div class="speaker">剛ノ山</div><div class="typing"><i></i><i></i><i></i></div>`;
- log.appendChild(d);
- d.scrollIntoView({behavior:"smooth",block:"nearest"});
-}
-function applyAI(r){
- ["affection","trust","respect","guard","selfEsteem","fightingSpirit"].forEach(k=>{
-   const dk=k+"_delta";
-   if(typeof r[dk]==="number") S[k]=clamp(S[k]+r[dk]);
- });
- if(typeof r.injury_delta==="number") S.injury=clamp(S.injury+r.injury_delta);
- if(typeof r.fatigue_delta==="number") S.fatigue=clamp(S.fatigue+r.fatigue_delta);
- if((r.memory_importance||0)>=3 && r.memory_summary){
-   S.memories.push({day:S.day,text:r.memory_summary,importance:r.memory_importance,raw:S.history.at(-1)?.player||""});
-   S.memories=S.memories.slice(-12);
- }
-}
-async function askAI(playerText){
- const payload={
-   day:S.day, turn:S.turn, scene:SCENES[S.day].title, player_text:playerText,
-   state:{
-     affection:S.affection, trust:S.trust, respect:S.respect, guard:S.guard,
-     self_esteem:S.selfEsteem, fighting_spirit:S.fightingSpirit, injury:S.injury, fatigue:S.fatigue
-   },
-   memories:S.memories.slice(-8),
-   recent_history:S.history.slice(-8)
- };
- if(API_BASE){
-   try{
-     const res=await fetch(`${API_BASE}/api/dialogue`,{
-       method:"POST",
-       headers:{"Content-Type":"application/json"},
-       body:JSON.stringify(payload)
-     });
-     if(!res.ok) throw new Error(await res.text());
-     const data=await res.json();
-     S.mode="live";
-     const st=document.getElementById("aiStatus");
-     st.textContent="AI LIVE";
-     st.className="status live";
-     return data;
-   }catch(err){
-     console.warn("AI backend unavailable; fallback to demo", err);
-   }
- }
- S.mode="mock";
- const st=document.getElementById("aiStatus");
- st.textContent="DEMO AI";
- st.className="status";
- return mockReply(payload);
-}
-function mockReply(p){
- const t=p.player_text, day=p.day, turn=p.turn;
- const has=(arr)=>arr.some(x=>t.includes(x));
- let emotion="neutral", gesture="still", dialogue="", memory_importance=1, memory_summary="";
- let trust_delta=0, affection_delta=0, respect_delta=0, guard_delta=0, selfEsteem_delta=0, fightingSpirit_delta=0;
-
- if(has(["好き","かっこいい","会いたい","大切"])){
-   emotion="blush"; gesture="look_away"; affection_delta=8; trust_delta=2;
-   memory_importance=4; memory_summary=`あなたは剛ノ山に好意を示した：「${t.slice(0,35)}」`;
-   dialogue=day===1 ? "……初対面で何言ってんだ。" : "……今それ言うの、反則だろ。";
- } else if(has(["心配","無理","休","痛","大丈夫"])){
-   emotion=day===2 ? "annoyed" : "soft"; gesture="look_away"; trust_delta=5; affection_delta=2;
-   dialogue=day===2 ? "……大げさだ。相撲取ってりゃ、これくらい普通だ。" : "……心配されるの、慣れてない。けど……ありがとな。";
- } else if(has(["価値","勝ち負け","結果だけ","相撲だけ"])){
-   emotion="serious"; gesture="still"; trust_delta=8; selfEsteem_delta=7;
-   memory_importance=5; memory_summary=`勝敗だけで剛ノ山の価値は決まらないという言葉：「${t.slice(0,48)}」`;
-   dialogue=day===3 ? "……それ、本気で言ってるなら。……忘れたくない。" : "……そういう考え方もあるのか。";
- } else if(has(["プリン","甘い","二個","2個"])){
-   emotion="blush"; gesture="look_away"; affection_delta=4;
-   dialogue="……一個、お前にやろうと思ってた。いらないなら俺が食う。";
- } else if(has(["頑張","勝","負けるな"])){
-   emotion="serious"; fightingSpirit_delta=5; respect_delta=2;
-   dialogue=day===3 ? "……次は勝つ。そう言っとく。" : "……言われなくてもやる。";
- } else if(has(["なんで","どうして","なぜ","？","?"])){
-   emotion="serious"; trust_delta=2;
-   dialogue=day===3 ? "……分かんねえ。勝てない自分を見るのが、一番嫌なのかもな。" : "……それ、今答えないと駄目か？";
- } else {
-   const pools={
-     1:["……そんなこと言う広報、初めて見た。","……お前、思ってたより普通に喋るんだな。","……変なやつ。まあ、嫌いじゃない。"],
-     2:["……よく見てるな。","……そこまで気にするほどじゃない。","……ふっ。お前と話すと調子狂う。"],
-     3:["……慰め方、下手だな。","……でも、黙って帰られるよりはマシか。","……もう少しだけ、話していけよ。"]
-   };
-   const pool=pools[day];
-   dialogue=pool[(S.history.length+turn)%pool.length];
-   emotion=day===3 ? "tired" : "neutral";
- }
- return {dialogue, emotion, gesture, trust_delta, affection_delta, respect_delta, guard_delta, selfEsteem_delta, fightingSpirit_delta, injury_delta:0, fatigue_delta:0, memory_importance, memory_summary, should_end_scene:false};
-}
-
+function actionDots(){return "● ".repeat(S.actionsLeft)+"○ ".repeat(Math.max(0,2-S.actionsLeft))}
+function topQuick(){return `<div class="quick"><button onclick="openPhone('talk')">📱 スマホ</button><button onclick="openPhone('album')">🖼️ 思い出</button><button onclick="openPhone('rank')">🏆 恋愛番付</button></div>`}
 function render(){
- const sc=SCENES[S.day];
- bg.className=`bg ${sc.bg}`;
- document.getElementById("location").textContent=sc.place;
- document.getElementById("record").textContent=`${S.wins}勝${S.losses}敗`;
- document.getElementById("condition").textContent=condition();
- document.getElementById("dayLabel").textContent=`DAY ${S.day}`;
- document.getElementById("sceneTitle").textContent=sc.title;
- lead.textContent=sc.lead;
- log.innerHTML="";
- setVisual(sc.expr, "still");
- bubble("gono", sc.opening);
- promptEl.textContent=sc.prompts[S.turn] || "自由に話してください。";
- input.disabled=false; sendBtn.disabled=false; input.value="";
- save();
+ if(S.finished)return renderEnd();
+ if(S.phase==="home")return renderHome();
+ if(S.phase==="map")return renderMap();
+ if(S.phase==="event")return renderEvent(S.currentEvent);
+ if(S.phase==="match")return renderMatch();
+ if(S.phase==="chat")return renderChat();
 }
-
-async function send(){
- const text=input.value.trim();
- if(!text) return;
- input.disabled=true; sendBtn.disabled=true;
- bubble("you", text);
- S.history.push({day:S.day, turn:S.turn, player:text});
- typing();
- const r=await askAI(text);
- const delay=S.mode==="live" ? 340 : 680;
- await new Promise(x=>setTimeout(x, delay));
- document.getElementById("typing")?.remove();
- applyAI(r);
- setVisual(r.emotion || "neutral", r.gesture || "still");
- const labels={
-   blush:"目をそらした",
-   soft:"少し表情がゆるんだ",
-   annoyed:"眉をひそめた",
-   tired:"疲れが見える",
-   pain:"痛みをこらえている",
-   serious:"視線がまっすぐ返ってきた",
-   smile:"少し笑った",
-   sad:"寂しそうに目を伏せた"
- };
- showExpression(labels[r.emotion] || "");
- bubble("gono", r.dialogue);
- S.history[S.history.length-1].gono=r.dialogue;
- S.history[S.history.length-1].emotion=r.emotion;
- S.lastReply=r.dialogue;
- save();
- setTimeout(afterReply, 240);
-}
-
-function afterReply(){
- const sc=SCENES[S.day];
- const nextTurn=S.turn + 1;
- if(nextTurn < sc.maxTurns){
-   const w=document.createElement("div");
-   w.className="next";
-   w.innerHTML=`<button>もう少し話す</button>`;
-   log.appendChild(w);
-   w.querySelector("button").onclick=()=>{
-     w.remove();
-     S.turn=nextTurn;
-     promptEl.textContent=sc.prompts[S.turn] || "もう一言、自由に話してください。";
-     if(S.day===2 && S.turn===3){
-       bubble("narr", "剛ノ山がコンビニ袋を持ち直した。中にはプリンが二つ見える。");
-       setVisual("blush", "look_away");
-       showExpression("少し気まずそうに目をそらした");
-     }
-     if(S.day===3 && S.turn===4){
-       bubble("gono", "お前はさ。……勝てない力士って、価値ないと思うか？");
-       setVisual("serious", "still");
-     }
-     input.disabled=false; sendBtn.disabled=false; input.value=""; input.focus();
-     save();
-   };
- } else {
-   bubble("narr", sc.ending);
-   const w=document.createElement("div");
-   w.className="next";
-   w.innerHTML=`<button>${S.day===3 ? "プロローグを終える" : "次の日へ"}</button>`;
-   log.appendChild(w);
-   w.querySelector("button").onclick=S.day===3 ? finish : nextDay;
- }
-}
-
-function nextDay(){
- const n=S.day+1;
- const t=document.getElementById("transition");
- document.getElementById("transN").textContent=`Day ${n}`;
- document.getElementById("transT").textContent=SCENES[n].title;
- t.classList.add("show");
- setTimeout(()=>{
-   S.day=n; S.turn=0;
-   if(n===2){S.wins=2; S.injury=8;}
-   else if(n===3){S.wins=2; S.losses=1; S.fatigue=26; S.selfEsteem=clamp(S.selfEsteem-6);}
-   t.classList.remove("show");
-   render();
- }, 1100);
-}
-
-function finish(){
- document.getElementById("controls").classList.add("hidden");
- bg.classList.add("blur");
- log.innerHTML="";
- lead.outerHTML = "";
- setVisual("sad", "look_away");
- const strong=S.memories.filter(m=>m.importance>=3);
- const container=document.querySelector(".main-panel");
- container.innerHTML=`<div class="end">
-   <div style="letter-spacing:.22em;font-size:11px;color:#8f2f33;font-weight:900">PROLOGUE END</div>
-   <h1>三日目の夜</h1>
-   <p style="line-height:1.8;color:#7b6f67">部屋に一人残った剛ノ山は、左足首に触れる。<br>そして、あなたとの会話を思い返した。</p>
-   ${
-     strong.length
-      ? strong.slice(-2).map(m=>`<div class="quote">「${esc(m.raw || m.text)}」</div>`).join("")
-      : `<div class="quote">あなたが今日言った言葉が、まだ頭に残っている。</div>`
-   }
-   <p style="font-size:20px;font-weight:900;margin-top:14px">「……勝てない力士、か。」</p>
-   <h2>つづく</h2>
-   <p style="font-size:12px;color:#7b6f67">この版の検証ポイントは、剛ノ山の見た目・表情・会話が以前より「気になる相手」になっているかです。</p>
-   <button class="dark" onclick="resetGame()">最初から遊ぶ</button>
+function renderHome(){
+ const d=DAYS[S.day];
+ screen.innerHTML=`<section class="hero"><div class="hero-copy"><div class="eyebrow">DAY ${S.day} / PROLOGUE</div><h1>${d.title}</h1><p>${d.theme}</p></div><img class="hero-char" src="${sp(S.day===3?'tired':'neutral')}"></section>
+ <div class="cards">
+  <div class="card"><div class="row"><div><h2>Day ${S.day}</h2><div class="sub">${S.wins}勝${S.losses}敗 ・ 残り行動 ${actionDots()}</div></div><button class="btn primary" onclick="startDay()">${S.actionsLeft===2?'今日を始める':'行動を続ける'}</button></div></div>
+  ${topQuick()}
+  <div class="card"><h3>今日までに気づいたこと</h3><div class="sub">${S.knowledge.length?S.knowledge.slice(-4).map(x=>"・"+esc(x)).join("<br>"):"まだ何も分からない。"}</div></div>
  </div>`;
 }
-
-document.getElementById("memoryBtn").onclick=()=>{
- const body=[...S.memories].reverse().map(m=>`<div class="memory"><b>Day ${m.day} / 重要度 ${m.importance}</b><br>${esc(m.text)}</div>`).join("") || "<p>まだ強く残った言葉はありません。</p>";
- showModal(`<button style="float:right" onclick="closeModal()">×</button><h2>剛ノ山の記憶</h2><p style="font-size:12px;color:#7c6f67">後の会話で引用される可能性がある、印象に残った言葉です。</p>${body}`);
-};
-
-document.getElementById("restartBtn").onclick=()=>showModal(`<button style="float:right" onclick="closeModal()">×</button><h2>最初から遊ぶ</h2><p>現在の会話・記憶を消して最初から始めます。</p><button class="dark" onclick="resetGame()">リセットする</button>`);
-
-function showModal(h){
- document.getElementById("modal").innerHTML=h;
- document.getElementById("overlay").classList.add("show");
+function startDay(){S.phase=S.actionsLeft>0?"map":"match";save();render()}
+function renderMap(){
+ const d=DAYS[S.day],vis=S.visited[S.day]||[];
+ screen.innerHTML=`<div class="daybar"><div><small>DAY ${S.day}</small><br><b>どこへ行く？</b></div><div><small>残り行動</small><div class="dots">${actionDots()}</div></div></div>
+ <div class="map-title"><h2>${d.title}</h2><div class="sub">1日ですべてを見ることはできません。</div></div>
+ <div class="map-grid">${d.places.map(([id,name,desc,icon])=>`<button class="place ${vis.includes(id)?'visited':''}" ${vis.includes(id)||S.actionsLeft<=0?'disabled':''} onclick="visit('${id}')"><span class="icon">${icon}</span><b>${name}</b><small>${desc}</small></button>`).join("")}</div>
+ <div class="cards">${topQuick()}<button class="btn" onclick="goHome()">ホームへ戻る</button></div>`;
 }
-function closeModal(){document.getElementById("overlay").classList.remove("show")}
-document.getElementById("overlay").onclick=e=>{if(e.target.id==="overlay") closeModal()}
-function resetGame(){localStorage.removeItem(KEY); location.reload()}
-sendBtn.onclick=send;
-window.closeModal=closeModal;
-window.resetGame=resetGame;
-
-const OPENING_KEY="koibasho_opening_seen_v2";
-let openingIndex=0;
-const opening=document.getElementById("opening");
-const openingScenes=[...document.querySelectorAll(".opening-scene")];
-const openingNext=document.getElementById("openingNext");
-const openingSkip=document.getElementById("openingSkip");
-const openingSkipHint=document.getElementById("openingSkipHint");
-
-function showOpeningScene(i){
-  openingIndex=i;
-  openingScenes.forEach((el,idx)=>el.classList.toggle("active",idx===i));
-  openingNext.textContent=i===openingScenes.length-1 ? "物語を始める" : "次へ";
+function visit(id){
+ const key=`${S.day}:${id}`, ev=EVENTS[key]; if(!ev)return;
+ S.currentEvent=key; S.phase="event";S.actionsLeft--;
+ S.visited[S.day]=S.visited[S.day]||[];S.visited[S.day].push(id);
+ ev.know.forEach(k=>{if(!S.knowledge.includes(k))S.knowledge.push(k)});
+ if(ev.album&&!S.album.includes(ev.album))S.album.push(ev.album);
+ if(!S.seenEvents.includes(key))S.seenEvents.push(key);
+ save();render();
 }
-function closeOpening(){
-  opening.classList.remove("show");
-  localStorage.setItem(OPENING_KEY,"1");
+function renderEvent(key){
+ const ev=EVENTS[key];
+ screen.innerHTML=`<section class="event-head"><div class="event-copy"><div class="eyebrow">DISCOVERY / DAY ${S.day}</div><h1>${ev.title}</h1><p>あなたが選んだから見えた出来事。</p></div><img class="char" src="${sp(ev.expr)}"></section>
+ <div class="story"><div class="story-box">${ev.text}<div class="unlock"><b>気づき</b><br>${ev.know.map(x=>"「"+esc(x)+"」").join("<br>")}${ev.album?`<br><br><b>思い出を解放</b>　${ALBUM[ev.album][1]}`:""}</div></div>
+ <div style="margin-top:12px"><button class="btn primary" style="width:100%" onclick="afterEvent()">${S.actionsLeft>0?'次の行動を選ぶ':'取組へ'}</button></div></div>`;
 }
-function startOpening(){
-  opening.classList.add("show");
-  const seen=localStorage.getItem(OPENING_KEY)==="1";
-  if(seen){
-    openingSkip.classList.remove("hidden");
-    openingSkipHint.textContent="2回目以降はスキップできます";
-  }else{
-    openingSkip.classList.add("hidden");
-    openingSkipHint.textContent="初回のみ最後まで再生されます";
-  }
-  showOpeningScene(0);
+function afterEvent(){S.phase=S.actionsLeft>0?"map":"match";save();render()}
+function renderMatch(){
+ const d=DAYS[S.day],win=d.match==="win";
+ const narratives={
+ 1:["立ち合い。","剛ノ山が一気に前へ出る。","相手にまわしを取らせず、そのまま土俵際へ。","──押し出し。"],
+ 2:["二日目の土俵。","剛ノ山の踏み込みが一瞬だけ浅い。","それでも上体の圧力で相手を起こす。","──寄り切り。"],
+ 3:["立ち合い。","剛ノ山が前へ出る。","しかし、左足が半歩遅れた。","体勢を戻せない。──突き落とし。"]
+ };
+ screen.innerHTML=`<section class="match"><div class="eyebrow">HONBASHO / DAY ${S.day}</div><h1>本日の取組</h1><div class="dohyo"><img src="${sp(win?'serious':'pain')}"></div><div class="match-log">${narratives[S.day].map(x=>`<div>${x}</div>`).join("")}</div><div class="result">${win?"○ 勝ち":"● 黒星"}</div><button class="btn gold" onclick="finishMatch()">取組後へ</button></section>`;
 }
-openingNext.onclick=()=>{
-  if(openingIndex < openingScenes.length-1) showOpeningScene(openingIndex+1);
-  else closeOpening();
-};
-openingSkip.onclick=closeOpening;
+function finishMatch(){
+ if(!S.matchDone?.[S.day]){
+   S.matchDone=S.matchDone||{};
+   S.matchDone[S.day]=true;
+   if(DAYS[S.day].match==="win")S.wins++;else{S.losses++;S.selfEsteem=clamp(S.selfEsteem-7);S.fatigue=clamp(S.fatigue+9)}
+   if(S.day===2)S.injury=clamp(S.injury+9);
+   if(S.day===3)S.injury=clamp(S.injury+7);
+ }
+ S.phase="chat";S.chatTurn=0;save();render();
+}
+function openingLine(){
+ if(S.day===1)return"……新しい広報？　俺、取材とか苦手だから。";
+ if(S.day===2){
+   if(S.knowledge.includes("左足を庇っていた"))return"……何見てる。別に何でもない。";
+   return"二連勝。……まあ、まだ二日目だ。";
+ }
+ return"負けたやつに何言えばいいか、困るだろ。";
+}
+function promptText(){
+ if(S.day===1)return"初対面の剛ノ山に、あなたの言葉で話しかけてください。";
+ if(S.day===2)return S.knowledge.includes("左足を庇っていた")?"あなたは左足の違和感を知っています。何と話しますか？":"今日見聞きしたことを踏まえて自由に話してください。";
+ return S.chatTurn>=2?"剛ノ山は答えを待っています。あなた自身の言葉で返してください。":"初黒星の夜。何を伝えますか？";
+}
+function renderChat(){
+ screen.innerHTML=`<section class="chat-stage ${S.day===3?'day3':''}"><div class="chat-title"><small>DAY ${S.day} / AFTER MATCH</small><b>剛ノ山 剛志</b></div><img id="chatChar" src="${sp(S.day===3?'tired':'neutral')}"></section>
+ <section class="chat-main"><div id="chatLog" class="log"></div></section>
+ <div class="chat-controls"><div id="chatPrompt" class="prompt">${promptText()}</div><textarea id="chatInput" placeholder="あなたの言葉で話す"></textarea><div class="row" style="margin-top:7px"><button class="btn" onclick="openPhone('talk')">スマホ</button><button id="sendBtn" class="btn primary" onclick="sendChat()">話す</button></div></div>`;
+ const log=$("#chatLog");
+ const prior=S.history.filter(x=>x.day===S.day&&x.channel==="scene");
+ if(!prior.length)addBubble("gono",openingLine());
+ else prior.forEach(x=>{addBubble("you",x.player);addBubble("gono",x.gono)});
+ if(S.day===3&&S.chatTurn>=2&&!S.askedValue)addBubble("gono","お前はさ。……勝てない力士って、価値ないと思うか？");
+}
+function addBubble(type,text){
+ const log=$("#chatLog");if(!log)return;
+ const d=document.createElement("div");d.className=`bubble ${type}`;
+ d.innerHTML=type==="gono"?`<div class="speaker">剛ノ山</div>${esc(text)}`:type==="you"?`<div class="speaker">あなた</div>${esc(text)}`:esc(text);
+ log.appendChild(d);d.scrollIntoView({block:"end"});
+}
+async function sendChat(){
+ const inp=$("#chatInput"),text=inp.value.trim();if(!text)return;
+ inp.disabled=true;$("#sendBtn").disabled=true;addBubble("you",text);
+ const r=await askAI(text,"scene");
+ applyAI(r,text,"scene");$("#chatChar").src=sp(r.emotion||"neutral");addBubble("gono",r.dialogue);
+ S.chatTurn++;save();
+ if(S.day===3&&S.chatTurn===2&&!S.askedValue){
+   S.askedValue=true;save();setTimeout(()=>addBubble("gono","お前はさ。……勝てない力士って、価値ないと思うか？"),350);
+ }
+ if(S.chatTurn>=3){
+   const wrap=document.createElement("div");wrap.style="margin-top:10px";
+   wrap.innerHTML=`<button class="btn dark" style="width:100%" onclick="endDay()">${S.day===3?"三日目を終える":"今日を終える"}</button>`;
+   $("#chatLog").appendChild(wrap);
+ }else{
+   inp.disabled=false;$("#sendBtn").disabled=false;inp.value="";$("#chatPrompt").textContent=promptText();
+ }
+}
+function applyAI(r,raw,channel){
+ for(const [stateKey,deltaKey] of [["affection","affection_delta"],["trust","trust_delta"],["respect","respect_delta"],["guard","guard_delta"],["selfEsteem","selfEsteem_delta"],["fightingSpirit","fightingSpirit_delta"],["dependency","dependency_delta"]]){
+   if(typeof r[deltaKey]==="number")S[stateKey]=clamp(S[stateKey]+r[deltaKey]);
+ }
+ if(typeof r.injury_delta==="number")S.injury=clamp(S.injury+r.injury_delta);
+ if(typeof r.fatigue_delta==="number")S.fatigue=clamp(S.fatigue+r.fatigue_delta);
+ if((r.memory_importance||0)>=3&&r.memory_summary)S.memories.push({day:S.day,text:r.memory_summary,importance:r.memory_importance,raw});
+ S.history.push({day:S.day,channel,player:raw,gono:r.dialogue,emotion:r.emotion});
+}
+async function askAI(text,channel="scene"){
+ const payload={day:S.day,turn:S.chatTurn,scene:channel==="phone"?"スマホ":"取組後",player_text:text,channel,
+  location:channel==="phone"?"スマホ":"雷神部屋",
+  state:{affection:S.affection,trust:S.trust,respect:S.respect,guard:S.guard,self_esteem:S.selfEsteem,fighting_spirit:S.fightingSpirit,dependency:S.dependency,injury:S.injury,fatigue:S.fatigue},
+  knowledge:S.knowledge.slice(-12),memories:S.memories.slice(-8),recent_history:S.history.slice(-10)};
+ if(API_BASE){
+  try{
+   const res=await fetch(`${API_BASE}/api/dialogue`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+   if(!res.ok)throw new Error(await res.text());
+   const data=await res.json();S.mode="live";$("#aiStatus").textContent="AI LIVE";$("#aiStatus").className="ai live";return data;
+  }catch(e){console.warn(e)}
+ }
+ S.mode="mock";$("#aiStatus").textContent="DEMO AI";$("#aiStatus").className="ai";return mockReply(text,channel);
+}
+function mockReply(t,channel){
+ const knows=x=>S.knowledge.includes(x),has=a=>a.some(x=>t.includes(x));
+ let r={dialogue:"……そうか。",emotion:"neutral",gesture:"still",affection_delta:0,trust_delta:1,respect_delta:0,guard_delta:0,selfEsteem_delta:0,fightingSpirit_delta:0,dependency_delta:0,injury_delta:0,fatigue_delta:0,memory_importance:1,memory_summary:"",action_intent:"none",topic:"other",should_end_scene:false};
+ if(channel==="phone"){r.dialogue=has(["おやすみ","休ん"] )?"……分かった。お前も早く寝ろ。":"……返信、早いな。";r.emotion="soft";r.trust_delta=2;return r}
+ if(has(["足","痛","大丈夫"])&&knows("左足を庇っていた")){r.dialogue="……見てたのか。大げさにするなよ。";r.emotion="annoyed";r.trust_delta=4;r.memory_importance=3;r.memory_summary="左足の異変に気づかれて心配された";r.topic="injury";return r}
+ if(has(["プリン","甘い"])&&knows("プリンが好き")){r.dialogue="……一個ならやる。二個とも俺のだと思うなよ。";r.emotion="blush";r.affection_delta=3;return r}
+ if(has(["価値","勝ち負け","相撲だけ","負けても"])){r.dialogue=S.day===3?"……それ、本気で言ってるなら。忘れたくない。":"……そういう考え方もあるのか。";r.emotion="serious";r.trust_delta=6;r.selfEsteem_delta=5;r.memory_importance=5;r.memory_summary=`勝敗と自分の価値について言われた：「${t.slice(0,44)}」`;return r}
+ if(has(["頑張","勝て","負けるな"])){r.dialogue="……言われなくてもやる。でも、覚えとく。";r.emotion="serious";r.fightingSpirit_delta=4;r.respect_delta=2;return r}
+ if(has(["好き","かっこいい","会いたい"])){r.dialogue="……今それ言うの、ずるいだろ。";r.emotion="blush";r.affection_delta=5;r.memory_importance=4;r.memory_summary="好意を示された";return r}
+ if(S.day===3){r.dialogue="……もう少しだけ、話していけよ。";r.emotion="tired";r.trust_delta=2}else{r.dialogue="……お前、変なところよく見てるな。";r.emotion="soft"}
+ return r;
+}
+function endDay(){
+ if(S.day===3){S.finished=true;save();render();return}
+ S.day++;S.phase="home";S.actionsLeft=2;S.chatTurn=0;S.askedValue=false;save();render();toast(`Day ${S.day} が始まります`);
+}
+function goHome(){S.phase="home";save();render()}
+function openPhone(tab="talk"){
+ const ov=$("#overlay"),sh=$("#sheet");ov.classList.add("show");
+ sh.innerHTML=`<div class="sheet-head"><div><div class="eyebrow">SMARTPHONE</div><h2 style="margin:4px 0">あなたのスマホ</h2></div><button onclick="closeSheet()">×</button></div>
+ <div class="phone-tabs"><button class="${tab==="talk"?"active":""}" onclick="openPhone('talk')">トーク</button><button class="${tab==="sns"?"active":""}" onclick="openPhone('sns')">SNS</button><button class="${tab==="album"?"active":""}" onclick="openPhone('album')">思い出</button><button class="${tab==="rank"?"active":""}" onclick="openPhone('rank')">恋愛番付</button></div>
+ <div id="phoneBody">${phoneBody(tab)}</div>`;
+}
+function phoneBody(tab){
+ if(tab==="sns"){
+  const posts=S.day===1?[["@sumofan223","剛ノ山、今日もインタビュー短すぎる"],["@dohyo_watch","相撲は強い。今場所期待"]]:S.day===2?[["@sumofan223","剛ノ山2連勝！幕内あるぞ"],["@watcher9","今日ちょっと足の運び変じゃなかった？"]]:[["@sumofan223","一敗しただけ。次だろ"],["@toughlove","今日の剛ノ山、弱気だった？"]];
+  return `<div class="feed">${posts.map(p=>`<div class="post"><b>${p[0]}</b>${p[1]}</div>`).join("")}</div>`;
+ }
+ if(tab==="album"){
+  return `<div class="album">${Object.entries(ALBUM).map(([id,a])=>S.album.includes(id)?`<div class="memory"><b>${a[0]}</b><h3>${a[1]}</h3><div class="sub">${a[2]}</div></div>`:`<div class="memory locked"><b>???</b><h3>未解放</h3><div class="sub">別の行動で見つかるかもしれない。</div></div>`).join("")}</div>`;
+ }
+ if(tab==="rank"){
+  return `<div class="rank"><small>現在の恋愛番付</small><strong>${rank()}</strong><div style="margin-top:9px;font-size:12px;line-height:1.6;opacity:.84">数字ではなく、剛ノ山の態度や行動から関係の変化を感じてください。</div></div><div class="notice" style="margin-top:10px">好意だけでは番付は上がりません。信頼・尊敬・距離感も関係しています。</div>`;
+ }
+ const msg=S.day===1?"今日は悪かった。取材慣れてない。":S.day===2?"今日のこと、親方には言うなよ。":"……まだ起きてるか。";
+ const history=S.history.filter(x=>x.channel==="phone").slice(-4);
+ return `<div class="feed"><div class="post"><b>剛ノ山　${S.day===1?"21:46":S.day===2?"23:14":"23:38"}</b>${msg}</div>${history.map(x=>`<div class="post"><b>あなた</b>${esc(x.player)}</div><div class="post"><b>剛ノ山</b>${esc(x.gono)}</div>`).join("")}</div>
+ <textarea id="phoneInput" style="width:100%;height:74px;margin-top:10px;border:1px solid var(--line);border-radius:14px;padding:10px" placeholder="返信する"></textarea><button class="btn primary" style="width:100%;margin-top:7px" onclick="sendPhone()">返信</button>`;
+}
+async function sendPhone(){
+ const i=$("#phoneInput"),t=i.value.trim();if(!t)return;i.disabled=true;
+ const r=await askAI(t,"phone");applyAI(r,t,"phone");save();openPhone("talk");
+}
+function closeSheet(){$("#overlay").classList.remove("show")}
+$("#overlay").onclick=e=>{if(e.target.id==="overlay")closeSheet()}
+function renderEnd(){
+ screen.innerHTML=`<div class="cards" style="padding-top:38px"><div class="card" style="text-align:center"><div class="eyebrow">PROLOGUE END</div><h1>三日目の夜</h1><img src="${sp("sad")}" style="height:330px;max-width:100%;object-fit:contain"><p style="line-height:1.9;color:var(--muted)">部屋に一人残った剛ノ山は、左足首に触れる。<br>そして、あなたとの会話を思い返した。</p>${S.memories.filter(m=>m.importance>=3).slice(-2).map(m=>`<div class="notice">「${esc(m.raw||m.text)}」</div>`).join("")}<h2>「……勝てない力士、か。」</h2><h1>つづく</h1><button class="btn dark" onclick="resetGame()">最初から遊ぶ</button></div>${topQuick()}</div>`;
+}
+function resetGame(){localStorage.removeItem(KEY);location.reload()}
+window.startDay=startDay;window.visit=visit;window.afterEvent=afterEvent;window.finishMatch=finishMatch;window.sendChat=sendChat;window.endDay=endDay;window.goHome=goHome;window.openPhone=openPhone;window.closeSheet=closeSheet;window.sendPhone=sendPhone;window.resetGame=resetGame;
 
-preloadSprites();
-render();
-startOpening();
+// Opening
+let oi=0;const opening=$("#opening"),scenes=[...document.querySelectorAll(".opening-scene")],opNext=$("#opNext"),opSkip=$("#opSkip");
+function showOp(){scenes.forEach((x,i)=>x.classList.toggle("active",i===oi));opNext.textContent=oi===scenes.length-1?"物語を始める":"次へ"}
+function closeOp(){opening.classList.remove("show");localStorage.setItem(OPENING_KEY,"1");render()}
+opNext.onclick=()=>{if(oi<scenes.length-1){oi++;showOp()}else closeOp()};
+opSkip.onclick=closeOp;
+function startOpening(){opening.classList.add("show");if(localStorage.getItem(OPENING_KEY)==="1")opSkip.classList.remove("hidden");showOp()}
+render();startOpening();
 </script>
 </body>
 </html>

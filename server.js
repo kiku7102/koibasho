@@ -51,11 +51,14 @@ const responseSchema = {
     fightingSpirit_delta: { type: "integer", minimum: -8, maximum: 8 },
     injury_delta: { type: "integer", minimum: -3, maximum: 3 },
     fatigue_delta: { type: "integer", minimum: -3, maximum: 3 },
+    dependency_delta: { type: "integer", minimum: -8, maximum: 8 },
+    action_intent: { type: "string" },
+    topic: { type: "string" },
     memory_importance: { type: "integer", minimum: 0, maximum: 5 },
     memory_summary: { type: "string" },
     should_end_scene: { type: "boolean" }
   },
-  required: ["dialogue","emotion","gesture","affection_delta","trust_delta","respect_delta","guard_delta","selfEsteem_delta","fightingSpirit_delta","injury_delta","fatigue_delta","memory_importance","memory_summary","should_end_scene"]
+  required: ["dialogue","emotion","gesture","affection_delta","trust_delta","respect_delta","guard_delta","selfEsteem_delta","fightingSpirit_delta","injury_delta","fatigue_delta","dependency_delta","action_intent","topic","memory_importance","memory_summary","should_end_scene"]
 };
 
 app.get("/health", (req,res) => res.json({ ok:true, ai: Boolean(client && model), model: model || null }));
@@ -63,11 +66,12 @@ app.get("/health", (req,res) => res.json({ ok:true, ai: Boolean(client && model)
 app.post("/api/dialogue", async (req,res) => {
   if (!client || !model) return res.status(503).json({ error:"OPENAI_API_KEY and OPENAI_MODEL are required" });
 
-  const { day, turn, player_text, state, memories, recent_history } = req.body || {};
+  const { day, turn, player_text, state, memories, recent_history, knowledge, location, channel, scene } = req.body || {};
   if (!player_text || typeof player_text !== "string") return res.status(400).json({ error:"player_text is required" });
 
   const context = {
-    day, turn, state,
+    day, turn, scene, location, channel, state,
+    knowledge: Array.isArray(knowledge) ? knowledge.slice(-12) : [],
     memories: Array.isArray(memories) ? memories.slice(-8) : [],
     recent_history: Array.isArray(recent_history) ? recent_history.slice(-8) : []
   };
@@ -79,7 +83,12 @@ app.post("/api/dialogue", async (req,res) => {
 emotion/gestureは返答に合うものを選ぶ。
 数値変化は小さくする。一発言だけで恋愛関係を大幅に変えない。
 memory_importance 3以上は、後で思い出す価値のある言葉だけ。
-memory_summary は剛ノ山視点で短く要約する。重要でなければ空文字。` }
+memory_summary は剛ノ山視点で短く要約する。重要でなければ空文字。
+knowledge は「プレイヤーが実際に見聞きした情報」。プレイヤーがその情報を前提に話した場合だけ、剛ノ山は「見ていたのか」など自然に反応してよい。
+プレイヤーが知らない情報を、剛ノ山側から都合よく説明しすぎない。
+channel が phone の場合は短いメッセージ口調にする。
+dependency_delta は、剛ノ山がプレイヤーへ判断を委ねる傾向の変化。過度な依存を安易に上げない。
+action_intent は今後の行動意図を短い英字または日本語で返す。topic は会話テーマを短く返す。` }
     ]},
     { role:"user", content:[
       { type:"input_text", text:`現在のゲーム状態:\n${JSON.stringify(context)}\n\nプレイヤーの発言:\n${player_text}` }
