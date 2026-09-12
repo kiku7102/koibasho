@@ -41,7 +41,7 @@ const responseSchema = {
   additionalProperties: false,
   properties: {
     dialogue: { type: "string" },
-    emotion: { type: "string", enum: ["neutral","soft","blush","annoyed","tired","pain","serious","smile"] },
+    emotion: { type: "string", enum: ["neutral","soft","blush","annoyed","tired","pain","serious","smile","sad"] },
     gesture: { type: "string", enum: ["still","look_away","rub_neck","step_closer","small_smile","flinch"] },
     affection_delta: { type: "integer", minimum: -8, maximum: 8 },
     trust_delta: { type: "integer", minimum: -8, maximum: 8 },
